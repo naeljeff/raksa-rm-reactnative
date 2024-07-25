@@ -1,11 +1,18 @@
 import {Text, View} from 'react-native';
 import {Surface, TextInput, Button, HelperText} from 'react-native-paper';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import React, {useState} from 'react';
+
+import {RootStackParamList} from '../../App';
 
 interface userInfo {
   username: string;
   password: string;
 }
+
+type LoginFormProps = {
+  navigation: NativeStackNavigationProp<RootStackParamList, 'login'>;
+};
 
 // interface TextInputIconProps {
 //   icon: string;
@@ -23,7 +30,7 @@ interface userInfo {
 //   return <Icon name={icon} size={size} color={color} style={style} />;
 // }
 
-const LoginForm = () => {
+const LoginForm = ({navigation}: LoginFormProps) => {
   const [formInput, setFormInput] = useState<userInfo>({
     username: '',
     password: '',
@@ -54,6 +61,10 @@ const LoginForm = () => {
     } else {
       // Nanti logic validasinya disini
       console.log('Data sudah input');
+      navigation.navigate('mainPage', {
+        username: formInput.username,
+        password: formInput.password,
+      });
     }
   };
 
@@ -89,7 +100,7 @@ const LoginForm = () => {
             mode="outlined"
             label="Password"
             placeholder="Enter your password"
-            secureTextEntry={showPassword}
+            secureTextEntry={!showPassword}
             outlineColor="#94a3b8"
             outlineStyle={{
               borderRadius: 10,
@@ -100,7 +111,7 @@ const LoginForm = () => {
             value={formInput.password}
             right={
               <TextInput.Icon
-                icon={showPassword ? 'eye-off' : 'eye'}
+                icon={showPassword ? 'eye' : 'eye-off'}
                 onPress={() => setShowPassword(!showPassword)}
               />
             }
