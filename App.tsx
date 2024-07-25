@@ -1,12 +1,11 @@
-// import { enableScreens } from 'react-native-screens';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {PaperProvider} from 'react-native-paper';
 import React from 'react';
-import LoginPage from './components/Pages/LoginPage';
-import IncomingJobPage from './components/Pages/IncomingJobPage';
 
-// enableScreens();
+import LoginPage from './components/Layout/LoginPage';
+import MainPage from './components/Layout/MainPage';
+
 const Stack = createNativeStackNavigator();
 
 const App = () => {
@@ -19,7 +18,7 @@ const App = () => {
             component={LoginPage}
             options={{headerShown: false}}
           />
-          <Stack.Screen name="incomingJob" component={IncomingJobPage} />
+          <Stack.Screen name="mainPage" component={MainPage} />
         </Stack.Navigator>
       </NavigationContainer>
     </PaperProvider>
