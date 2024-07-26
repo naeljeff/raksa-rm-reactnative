@@ -3,7 +3,11 @@ import {Badge} from 'react-native-paper';
 import React, {useState} from 'react';
 import LinearGradient from 'react-native-linear-gradient';
 
-const Navbar = () => {
+interface NavbarProps {
+  onMenuChange: (option: string) => void;
+}
+
+const Navbar = ({onMenuChange}: NavbarProps) => {
   const menu: string[] = [
     'Incoming Job',
     'Job Monitoring',
@@ -11,6 +15,11 @@ const Navbar = () => {
     'History',
   ];
   const [index, setIndex] = useState<number>(0);
+
+  const handleMenuPress = (option: string, idx: number) => {
+    setIndex(idx);
+    onMenuChange(option);
+  };
   return (
     <View className="w-full h-[50px]">
       <LinearGradient
@@ -22,9 +31,9 @@ const Navbar = () => {
             <View className="flex flex-row items-center justify-center">
               <Pressable
                 key={idx}
-                onPress={() => setIndex(idx)}
+                onPress={() => handleMenuPress(item, idx)}
                 className={`mr-2 ${
-                  index === idx ? 'bg-[#585454] py-1 px-1 rounded' : ''
+                  index === idx ? 'bg-[#585454] py-1.5 px-1 rounded' : ''
                 }`}>
                 <Text
                   className={`relative text-sm text-black ${
