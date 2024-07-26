@@ -4,6 +4,14 @@ import {Surface} from 'react-native-paper';
 import React from 'react';
 
 const Header = () => {
+
+  const handleLogout = () => {
+
+  }
+
+  const handleRefresh = () => {
+    
+  }
   return (
     <View className="w-full h-[45px] px-5 flex flex-row justify-between items-center bg-[#ffbc3c] ">
       {/* Logout Button */}
