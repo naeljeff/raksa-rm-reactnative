@@ -1,5 +1,5 @@
-import {Text, View} from 'react-native';
-import {ListItem} from '@rneui/themed';
+import {View} from 'react-native';
+import {Dropdown} from 'react-native-element-dropdown';
 import React, {useState} from 'react';
 
 interface SearchProps {
@@ -7,52 +7,36 @@ interface SearchProps {
 }
 
 const SearchBy = ({onSearchByChange}: SearchProps) => {
-  const [expanded, setExpanded] = useState(false);
   const [selected, setSelected] = useState('');
-  const list2 = [
-    {name: 'First item', subtitle: 'Subtitle 1'},
-    {name: 'Second item', subtitle: 'Subtitle 2'},
-    {name: 'Third item', subtitle: 'Subtitle 3'},
+  const searchByList = [
+    {name: 'First item', value: 'Subtitle 1'},
+    {name: 'Second item', value: 'Subtitle 2'},
+    {name: 'Third item', value: 'Subtitle 3'},
   ];
 
-  const handleSearchByChange = (option: string) => {
-    onSearchByChange(option);
+  const handleSearchBy = (option: {name: string; value: string}) => {
+    setSelected(option.value);
+    onSearchByChange(option.value);
   };
   return (
-    <View>
-      <ListItem.Accordion
-        content={
-          <>
-            <ListItem.Content className="max-w-[70px] ">
-              <ListItem.Title className="text-sm">
-                {selected ? selected : 'Search By'}
-              </ListItem.Title>
-            </ListItem.Content>
-          </>
-        }
-        containerStyle={{backgroundColor: 'transparent'}}
-        isExpanded={expanded}
-        onPress={() => {
-          setExpanded(!expanded);
-        }}>
-        {list2.map((l, i) => (
-          <ListItem
-            key={i}
-            onPress={() => {
-              console.log(`search: ${l.name}`);
-              handleSearchByChange(l.name);
-              setSelected(l.name);
-              setExpanded(!expanded);
-            }}
-            bottomDivider>
-            <ListItem.Content>
-              <ListItem.Title>{l.name}</ListItem.Title>
-              <ListItem.Subtitle>{l.subtitle}</ListItem.Subtitle>
-            </ListItem.Content>
-            <ListItem.Chevron />
-          </ListItem>
-        ))}
-      </ListItem.Accordion>
+    <View className="w-[33%] mt-4 ml-3">
+      <Dropdown
+        data={searchByList}
+        search
+        activeColor="#ffffea"
+        maxHeight={300}
+        labelField="name"
+        valueField="value"
+        placeholder="Search By"
+        searchPlaceholder="Search By"
+        value={selected}
+        selectedTextStyle={{fontSize: 12}}
+        itemTextStyle={{fontSize: 12}}
+        inputSearchStyle={{fontSize: 12}}
+        placeholderStyle={{fontSize: 12}}
+        style={{paddingHorizontal: 4}}
+        onChange={option => handleSearchBy(option)}
+      />
     </View>
   );
 };
