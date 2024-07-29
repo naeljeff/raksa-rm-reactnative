@@ -2,6 +2,10 @@ import {Text, View, Pressable} from 'react-native';
 import {Badge} from 'react-native-paper';
 import React, {useState} from 'react';
 import LinearGradient from 'react-native-linear-gradient';
+import {useSelector} from 'react-redux';
+
+import {getDataCount} from '../../store/slices/surveySlice';
+import {RootState} from '../../store';
 
 interface NavbarProps {
   onMenuChange: (option: string) => void;
@@ -20,6 +24,9 @@ const Navbar = ({onMenuChange}: NavbarProps) => {
     setIndex(idx);
     onMenuChange(option);
   };
+
+  const dataCount = useSelector((state: RootState) => getDataCount(state));
+
   return (
     <View className="w-full h-[50px]">
       <LinearGradient
@@ -50,7 +57,7 @@ const Navbar = ({onMenuChange}: NavbarProps) => {
                         ? 'top-[-3px] right-[-5px]'
                         : 'top-[-7px] right-[-8px]'
                     }`}>
-                    3
+                    {dataCount > 99 ? '99+' : dataCount}
                   </Badge>
                 )}
               </Pressable>

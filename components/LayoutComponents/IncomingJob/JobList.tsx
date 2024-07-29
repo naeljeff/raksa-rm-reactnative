@@ -1,34 +1,59 @@
-import {FlatList, View, Text, RefreshControl} from 'react-native';
-import React, {useState, useEffect} from 'react';
-import { fetchSurveyData } from '../../../services/api/survey/getSurveyData';
+import {
+  FlatList,
+  View,
+  Text,
+  RefreshControl,
+  TouchableOpacity,
+} from 'react-native';
+import React, {useEffect} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
+import Icon from 'react-native-vector-icons/Ionicons';
+import {Badge} from 'react-native-paper';
+
+import {
+  fetchData,
+  startRefreshing,
+  stopRefreshing,
+} from '../../../store/slices/surveySlice';
+import {RootState, AppDispatch} from '../../../store';
 
 type JobProps = {
-  id: string;
-  title: string;
+  rowid: number;
+  noPengajuanSurvey: string;
+  unitNo: string;
+  alamat: string;
+  noTelp: string;
+  email: string;
+  createdAt: string;
+  merek: string;
+  tipe: string;
+  model: string;
+  jenisAsuransi: string;
 };
-
-console.log('fetchSurveyData:', fetchSurveyData);
 
 const Job = ({item}: {item: JobProps}) => (
   <View className="w-full flex flex-row justify-start items-center py-0.5 px-1 gap-x-1 border-t border-black">
-    {/* <Text>{item.id}</Text>
-    <Text>{item.title}</Text> */}
-
     {/* Icon Mail */}
-    <View className="flex-[0.1]">
-      <Text>Mail</Text>
-      <Text>{item.id}</Text>
+    <View className="flex-[0.1] flex items-center justify-center ">
+      <TouchableOpacity onPress={() => console.log('pressed')}>
+        <Icon name="mail" size={24} color="black" />
+        <Badge className="absolute bg-red-500 -left-1 top-3.5" size={16}>
+          !
+        </Badge>
+      </TouchableOpacity>
     </View>
 
     {/* Informasi kendaraan */}
     <View className="flex-[0.6] flex-col gap-y-1">
       <Text className="font-bold text-black uppercase">
-        AUTO-01-00001-07-2024/0001
+        {item.noPengajuanSurvey}/{item.unitNo}
       </Text>
-      <Text className="text-black uppercase">A</Text>
-      <Text className="text-black uppercase">6287123123123</Text>
-      <Text className="text-black uppercase">ALL RISK</Text>
-      <Text className="text-black uppercase">Cibarusah Cikarang</Text>
+      <Text className="text-black uppercase">
+        {item.merek} - {item.tipe} - {item.model}
+      </Text>
+      <Text className="text-black uppercase">{item.noTelp}</Text>
+      <Text className="text-black uppercase">{item.jenisAsuransi}</Text>
+      <Text className="text-black uppercase">{item.alamat}</Text>
     </View>
 
     {/* Due Date */}
@@ -46,110 +71,27 @@ const Job = ({item}: {item: JobProps}) => (
 );
 
 const JobList = () => {
-  const [refreshing, setRefreshing] = useState<boolean>(false);
-  const [data, setData] = useState<JobProps[]>([]);
+  const dispatch = useDispatch<AppDispatch>();
+  const data = useSelector((state: RootState) => state.survey.data);
+  const refreshing = useSelector((state: RootState) => state.survey.refreshing);
 
-  const fetchData = async () => {
-    try {
-    //   const response = await fetchSurveyData();
-    //   console.log(response);
-    } catch (error) {
-      console.error('Error fetching data:', error);
-    }
-  };
+  useEffect(() => {
+    dispatch(fetchData());
+  }, [dispatch]);
 
   const handleRefresh = () => {
-    setRefreshing(true);
-    setTimeout(() => {
-    //   fetchData();
-      setRefreshing(false);
-      const dataTemp = [
-        {
-          id: '1',
-          title:
-            'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Illum, exercitationem. Laudantium, qui labore sit consequuntur minus iusto voluptates saepe aperiam!',
-        },
-        {
-          id: '2',
-          title:
-            'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Illum, exercitationem. Laudantium, qui labore sit consequuntur minus iusto voluptates saepe aperiam!',
-        },
-        {
-          id: '3',
-          title:
-            'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Illum, exercitationem. Laudantium, qui labore sit consequuntur minus iusto voluptates saepe aperiam!',
-        },
-        {
-          id: '4',
-          title:
-            'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Illum, exercitationem. Laudantium, qui labore sit consequuntur minus iusto voluptates saepe aperiam!',
-        },
-        {
-          id: '5',
-          title:
-            'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Illum, exercitationem. Laudantium, qui labore sit consequuntur minus iusto voluptates saepe aperiam!',
-        },
-        {
-          id: '6',
-          title:
-            'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Illum, exercitationem. Laudantium, qui labore sit consequuntur minus iusto voluptates saepe aperiam!',
-        },
-        {
-          id: '7',
-          title:
-            'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Illum, exercitationem. Laudantium, qui labore sit consequuntur minus iusto voluptates saepe aperiam!',
-        },
-        {
-          id: '8',
-          title:
-            'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Illum, exercitationem. Laudantium, qui labore sit consequuntur minus iusto voluptates saepe aperiam!',
-        },
-        {
-          id: '9',
-          title:
-            'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Illum, exercitationem. Laudantium, qui labore sit consequuntur minus iusto voluptates saepe aperiam!',
-        },
-        {
-          id: '10',
-          title:
-            'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Illum, exercitationem. Laudantium, qui labore sit consequuntur minus iusto voluptates saepe aperiam!',
-        },
-        {
-          id: '11',
-          title:
-            'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Illum, exercitationem. Laudantium, qui labore sit consequuntur minus iusto voluptates saepe aperiam!',
-        },
-        {
-          id: '12',
-          title:
-            'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Illum, exercitationem. Laudantium, qui labore sit consequuntur minus iusto voluptates saepe aperiam!',
-        },
-        {
-          id: '13',
-          title:
-            'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Illum, exercitationem. Laudantium, qui labore sit consequuntur minus iusto voluptates saepe aperiam!',
-        },
-        {
-          id: '14',
-          title:
-            'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Illum, exercitationem. Laudantium, qui labore sit consequuntur minus iusto voluptates saepe aperiam!',
-        },
-        {
-          id: '15',
-          title:
-            'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Illum, exercitationem. Laudantium, qui labore sit consequuntur minus iusto voluptates saepe aperiam!',
-        },
-      ];
-      setData(dataTemp);
-    }, 2000);
+    dispatch(startRefreshing());
+    dispatch(fetchData()).finally(() => {
+      dispatch(stopRefreshing());
+    });
   };
 
   return (
     <View className="flex-1 w-full bg-[#ffffea]">
       <FlatList
         data={data}
-        renderItem={Job}
-        keyExtractor={item => item.id}
+        renderItem={({item}) => <Job item={item} />}
+        keyExtractor={(item, index) => `${item.rowid}-${index}`}
         refreshControl={
           <RefreshControl refreshing={refreshing} onRefresh={handleRefresh} />
         }
