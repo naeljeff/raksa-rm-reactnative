@@ -1,10 +1,9 @@
 import {Text, View} from 'react-native';
 import React, {useState} from 'react';
-import {List} from 'react-native-paper';
 
-import {ListItem} from '@rneui/themed';
-
-import SearchBarInput from '../../LayoutComponents/SearchBarInput';
+import SearchBarInput from '../../LayoutComponents/SearchBar/SearchBarInput';
+import Information from '../../LayoutComponents/Information';
+import JobList from '../../LayoutComponents/IncomingJob/JobList';
 
 const IncomingJobPage = () => {
   const list2 = [
@@ -17,6 +16,11 @@ const IncomingJobPage = () => {
   return (
     <View className="w-full h-full flex flex-col">
       <SearchBarInput />
+
+      {/* Information */}
+      <Information />
+
+      <JobList />
     </View>
   );
 };

@@ -1,9 +1,12 @@
 import {Text, View} from 'react-native';
 import {Surface, TextInput, Button, HelperText} from 'react-native-paper';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import Toast from 'react-native-simple-toast';
+import {CommonActions} from '@react-navigation/native';
 import React, {useState} from 'react';
 
 import {RootStackParamList} from '../../App';
+import {validateUser} from '../../services/api/userValidation';
 
 interface userInfo {
   username: string;
@@ -37,6 +40,8 @@ const LoginForm = ({navigation}: LoginFormProps) => {
   });
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const [formSubmitted, setFormSubmitted] = useState<boolean>(false);
+  const [isUserValidated, setIsUserValidated] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const handleUsernameInput = (username: string) => {
     setFormInput({...formInput, username});
@@ -54,17 +59,60 @@ const LoginForm = ({navigation}: LoginFormProps) => {
     return formInput.password.length === 0;
   };
 
+  const validateUserLogin = async () => {
+    setIsLoading(true);
+    setIsUserValidated(false);
+    try {
+      const response = await validateUser(
+        formInput.username,
+        formInput.password,
+      );
+
+      // validate data
+      const msg_code: string = response.messagecode;
+
+      // double validation for user and password
+      if (
+        msg_code === '00' &&
+        formInput.username === response.info[0].USER_NAME &&
+        formInput.password === response.info[0].CURRENT_PASSWORD
+      ) {
+        setIsUserValidated(true);
+        console.log('masuk login');
+        setFormInput({username: '', password: ''});
+        navigation.dispatch(
+          CommonActions.reset({
+            index: 0,
+            routes: [
+              {
+                name: 'mainPage',
+                params: {
+                  username: formInput.username,
+                  password: formInput.password,
+                },
+              },
+            ],
+          }),
+        );
+
+        Toast.show('Login Berhasil!', Toast.LONG);
+        setFormSubmitted(false);
+      } else {
+        setIsUserValidated(false);
+        console.log('Data salah');
+      }
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
   const handleFormSubmit = () => {
     setFormSubmitted(true);
     if (hasUsername() || hasPassword()) {
       console.log('Data input kosong');
     } else {
-      // Nanti logic validasinya disini
-      console.log('Data sudah input');
-      navigation.navigate('mainPage', {
-        username: formInput.username,
-        password: formInput.password,
-      });
+      validateUserLogin();
     }
   };
 
@@ -143,9 +191,15 @@ const LoginForm = ({navigation}: LoginFormProps) => {
                 textColor="black"
                 rippleColor="white"
                 onPress={handleFormSubmit}>
-                Login
+                {isLoading ? 'Loading...' : 'Login'}
               </Button>
             </Surface>
+
+            {formSubmitted && !isUserValidated && (
+              <HelperText type="error">
+                Username/Password tidak sesuai!
+              </HelperText>
+            )}
           </View>
         </View>
       </Surface>

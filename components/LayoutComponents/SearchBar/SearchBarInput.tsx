@@ -3,9 +3,9 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import Feather from 'react-native-vector-icons/Feather';
 import {Text, View, TextInput, TouchableOpacity} from 'react-native';
 
-import SearchBy from './SearchBar/SearchBy';
-import SortBy from './SearchBar/SortBy';
-import OrderBy from './SearchBar/OrderBy';
+import SearchBy from './SearchBy';
+import SortBy from './SortBy';
+import OrderBy from './OrderBy';
 import {Surface} from 'react-native-paper';
 
 const SearchBarInput = () => {
@@ -54,10 +54,10 @@ const SearchBarInput = () => {
   return (
     <View className="w-full h-[80px] bg-[#ffffea] flex flex-col justify-center items-start">
       {/* Search Area */}
-      <View className="w-full p-1 mt-1 flex flex-row justify-between items-center">
+      <View className="w-full p-1 mt-1 ml-0.5 pr-2 flex flex-row justify-between items-center">
         {/* Search Bar */}
-        <View className="w-full flex flex-row items-center justify-start mt-2">
-          <View className="w-full h-[35px] px-3 flex flex-row justify-start items-center border border-black rounded-full bg-white">
+        <View className="w-full flex flex-row items-center justify-start my-1">
+          <View className="w-full h-[30px] px-3 flex flex-row justify-start items-center border border-black rounded-lg bg-white">
             {/* Search Button */}
             <TouchableOpacity onPress={handleSearchIcon}>
               <Icon name="search" size={18} />
@@ -95,12 +95,12 @@ const SearchBarInput = () => {
       <View className="w-full flex flex-row justify-between items-center mb-1">
         {/* Sort By */}
         <View className="w-[55%] h-[40px] flex flex-row gap-x-1 ml-0.5">
-          <View className="w-[50%] h-[30px] border border-black bg-white rounded-full pl-2 py-1">
+          <View className="w-[50%] h-[30px] border border-black bg-white rounded-lg pl-2 py-1">
             {/* Sort Option */}
             <SortBy onSortByChange={onSortByChange} />
           </View>
 
-          <View className="w-[50%] h-[30px] text-sm border border-black bg-white rounded-full pl-2 py-1">
+          <View className="w-[50%] h-[30px] text-sm border border-black bg-white rounded-lg pl-2 py-1">
             {/* Sort Order */}
             <OrderBy onOrderByChange={onOrderByChange} />
           </View>

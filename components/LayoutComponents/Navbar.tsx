@@ -28,9 +28,10 @@ const Navbar = ({onMenuChange}: NavbarProps) => {
         {/* Menu */}
         <View className="w-full flex flex-row justify-center gap-x-2">
           {menu.map((item, idx) => (
-            <View className="flex flex-row items-center justify-center">
+            <View
+              key={idx}
+              className="flex flex-row items-center justify-center">
               <Pressable
-                key={idx}
                 onPress={() => handleMenuPress(item, idx)}
                 className={`mr-2 ${
                   index === idx ? 'bg-[#585454] py-1.5 px-1 rounded' : ''

@@ -12,6 +12,7 @@ import MainPage from './components/Layout/MainPage';
 export type RootStackParamList = {
   login: undefined;
   mainPage: {username: string; password: string};
+  
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
