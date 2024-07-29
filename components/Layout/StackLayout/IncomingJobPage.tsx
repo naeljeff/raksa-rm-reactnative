@@ -14,7 +14,7 @@ const IncomingJobPage = () => {
   const [selected, setSelected] = useState('');
   const [expanded, setExpanded] = useState(false);
   return (
-    <View className="w-full h-full flex flex-col">
+    <View className="w-full h-full flex flex-1 flex-col">
       <SearchBarInput />
 
       {/* Information */}

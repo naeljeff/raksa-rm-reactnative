@@ -6,7 +6,7 @@ import {CommonActions} from '@react-navigation/native';
 import React, {useState} from 'react';
 
 import {RootStackParamList} from '../../App';
-import {validateUser} from '../../services/api/userValidation';
+import {validateUser} from '../../services/api/user/getUserLogin';
 
 interface userInfo {
   username: string;
@@ -73,7 +73,7 @@ const LoginForm = ({navigation}: LoginFormProps) => {
 
       // double validation for user and password
       if (
-        msg_code === '00' &&
+        msg_code === '02' &&
         formInput.username === response.info[0].USER_NAME &&
         formInput.password === response.info[0].CURRENT_PASSWORD
       ) {
