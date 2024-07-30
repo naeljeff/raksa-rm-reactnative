@@ -29,6 +29,8 @@ type JobProps = {
   tipe: string;
   model: string;
   jenisAsuransi: string;
+  status: string;
+  platNomor: string;
 };
 
 const Job = ({item}: {item: JobProps}) => (
@@ -49,7 +51,7 @@ const Job = ({item}: {item: JobProps}) => (
         {item.noPengajuanSurvey}/{item.unitNo}
       </Text>
       <Text className="text-black uppercase">
-        {item.merek} - {item.tipe} - {item.model}
+        {item.merek} - {item.tipe} - {item.model} | {item.platNomor}
       </Text>
       <Text className="text-black uppercase">{item.noTelp}</Text>
       <Text className="text-black uppercase">{item.jenisAsuransi}</Text>
@@ -64,7 +66,7 @@ const Job = ({item}: {item: JobProps}) => (
 
     {/* Status */}
     <View className="flex-[0.1] flex-col gap-y-1">
-      <Text className="text-black">New</Text>
+      <Text className="text-black capitalize">{item.status}</Text>
       <Text className="text-black">-</Text>
     </View>
   </View>

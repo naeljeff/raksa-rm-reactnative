@@ -4,12 +4,14 @@ import {Surface} from 'react-native-paper';
 import {CommonActions, useNavigation} from '@react-navigation/native';
 import Toast from 'react-native-simple-toast';
 import React from 'react';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
+
 import {
   fetchData,
   startRefreshing,
   stopRefreshing,
 } from '../../store/slices/surveySlice';
+import { logout } from '../../store/slices/userSlice';
 import {AppDispatch} from '../../store';
 
 const Header = () => {
@@ -17,6 +19,8 @@ const Header = () => {
   const dispatch = useDispatch<AppDispatch>();
 
   const handleLogout = () => {
+    dispatch(logout());
+
     navigation.dispatch(
       CommonActions.reset({
         index: 0,

@@ -1,6 +1,6 @@
 import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
 import {fetchSurveyData} from '../../services/api/survey/getSurveyData';
-import { RootState } from '..';
+import {RootState} from '..';
 
 type JobProps = {
   rowid: number;
@@ -14,6 +14,8 @@ type JobProps = {
   tipe: string;
   model: string;
   jenisAsuransi: string;
+  status: string;
+  platNomor:string;
 };
 
 interface SurveyState {
@@ -30,6 +32,7 @@ const initialState: SurveyState = {
 // Fetch the data dari api -> thunk middleware
 export const fetchData = createAsyncThunk('survey/fetchData', async () => {
   const response = await fetchSurveyData();
+  // console.log('Thunk Response:', response);
   return response.data;
 });
 
@@ -48,6 +51,7 @@ const surveySlice = createSlice({
     // Builder buat fetch data
     builder.addCase(fetchData.fulfilled, (state, action) => {
       // Simpen datanya dari payload ke state
+      // console.log('Reducer Action:', action.payload);
       state.data = action.payload;
       state.refreshing = false;
     });

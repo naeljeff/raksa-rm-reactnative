@@ -35,7 +35,6 @@ const SearchBarInput = () => {
   };
 
   // Filter
-
   const onSearchByChange = (selection: string) => {
     setSelected(selection);
     console.log(selection);

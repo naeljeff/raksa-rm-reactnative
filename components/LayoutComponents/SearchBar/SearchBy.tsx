@@ -8,6 +8,7 @@ interface SearchProps {
 
 const SearchBy = ({onSearchByChange}: SearchProps) => {
   const [selected, setSelected] = useState('');
+  // 
   const searchByList = [
     {name: 'First item', value: 'Subtitle 1'},
     {name: 'Second item', value: 'Subtitle 2'},

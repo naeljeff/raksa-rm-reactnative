@@ -16,6 +16,7 @@ export const fetchSurveyData = async () => {
           },
         },
       );
+      // console.log('API Response:', res.data);
       return res.data;
     } catch (error) {
       console.log(`Error: ${error}`);
