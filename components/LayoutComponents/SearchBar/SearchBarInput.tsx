@@ -8,8 +8,18 @@ import SortBy from './SortBy';
 import OrderBy from './OrderBy';
 import {Surface} from 'react-native-paper';
 
-const SearchBarInput = () => {
-  const [search, setSearch] = useState<string>('');
+interface SearchBarInputProps {
+  setSearchTerm: (text: string) => void;
+  setSearchByTerm: (text: string) => void;
+  searchTab: string;
+}
+
+const SearchBarInput = ({
+  setSearchTerm,
+  searchTab,
+  setSearchByTerm,
+}: SearchBarInputProps) => {
+  const [localSearch, setLocalSearch] = useState<string>('');
   const [searchBy, setSearchBy] = useState<boolean>(false);
   const [sortOrder, setSortOrder] = useState<string>('');
   const [selected, setSelected] = useState<string>('');
@@ -17,13 +27,15 @@ const SearchBarInput = () => {
   const [orderBy, setOrderBy] = useState<string>('');
 
   const handleClearPress = () => {
-    setSearch('');
+    setLocalSearch('');
     setSearchBy(false);
+    setSearchTerm('');
   };
 
   const handleInputChange = (text: string) => {
-    setSearch(text);
+    setLocalSearch(text);
     setSearchBy(true);
+    setSearchTerm(text);
   };
 
   const handleSearchIcon = () => {
@@ -37,7 +49,8 @@ const SearchBarInput = () => {
   // Filter
   const onSearchByChange = (selection: string) => {
     setSelected(selection);
-    console.log(selection);
+    setSearchByTerm(selection);
+
   };
 
   const onSortByChange = (selection: string) => {
@@ -67,12 +80,12 @@ const SearchBarInput = () => {
               className="w-[50%] text-black mr-8 py-1 placeholder:text-sm"
               placeholder="Search"
               style={{fontSize: 12}}
-              value={search}
+              value={localSearch}
               onChangeText={handleInputChange}
             />
 
             {/* Clear Input */}
-            {search.length > 0 && (
+            {localSearch.length > 0 && (
               <TouchableOpacity
                 onPress={handleClearPress}
                 className="absolute right-36">
@@ -84,7 +97,10 @@ const SearchBarInput = () => {
 
             {/* Filter */}
             <View className="h-[50px] w-full -ml-4 mb-1">
-              <SearchBy onSearchByChange={onSearchByChange} />
+              <SearchBy
+                onSearchByChange={onSearchByChange}
+                searchTab={searchTab}
+              />
             </View>
           </View>
         </View>

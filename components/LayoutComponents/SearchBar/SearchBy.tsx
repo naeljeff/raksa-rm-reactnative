@@ -1,19 +1,53 @@
 import {View} from 'react-native';
 import {Dropdown} from 'react-native-element-dropdown';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 
 interface SearchProps {
   onSearchByChange: (selection: string) => void;
+  searchTab: string;
 }
 
-const SearchBy = ({onSearchByChange}: SearchProps) => {
+const SearchBy = ({onSearchByChange, searchTab}: SearchProps) => {
   const [selected, setSelected] = useState('');
-  // 
-  const searchByList = [
-    {name: 'First item', value: 'Subtitle 1'},
-    {name: 'Second item', value: 'Subtitle 2'},
-    {name: 'Third item', value: 'Subtitle 3'},
-  ];
+  const [searchByList, setSearchByList] = useState<any[]>([]);
+
+  useEffect(() => {
+    switch (searchTab) {
+      case 'IncomingJob':
+        setSearchByList([
+          {name: 'No Pengajuan', value: 'noPengajuanSurvey'},
+          {name: 'Alamat Survey', value: 'alamat'},
+          {name: 'No Telepon', value: 'noTelp'},
+          {name: 'Merek', value: 'merek'},
+          {name: 'Tipe', value: 'tipe'},
+          {name: 'Model', value: 'model'},
+          {name: 'Jenis Asuransi', value: 'jenisAsuransi'},
+          {name: 'Plat Nomor', value: 'platNomor'},
+        ]);
+        break;
+      case 'JobMonitoring':
+        setSearchByList([
+          {name: 'No Pengajuan', value: 'noPengajuanSurvey'},
+          {name: 'Nama Surveyor', value: 'surveyorName'},
+          {name: 'Tanggal Request', value: 'requestDate'},
+          {name: 'Insured Name', value: 'insuredName'},
+        ]);
+        break;
+      case 'MySurvey':
+        setSearchByList([
+          {name: 'No Pengajuan', value: 'noPengajuanSurvey'},
+          {name: 'Alamat Survey', value: 'alamat'},
+          {name: 'No Telepon', value: 'noTelp'},
+          {name: 'Merek', value: 'merek'},
+          {name: 'Tipe', value: 'tipe'},
+          {name: 'Model', value: 'model'},
+        ]);
+        break;
+      default:
+        setSearchByList([]);
+        break;
+    }
+  }, [searchTab]);
 
   const handleSearchBy = (option: {name: string; value: string}) => {
     setSelected(option.value);

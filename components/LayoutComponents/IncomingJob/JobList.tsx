@@ -5,17 +5,10 @@ import {
   RefreshControl,
   TouchableOpacity,
 } from 'react-native';
-import React, {useEffect} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
+import React from 'react';
 import Icon from 'react-native-vector-icons/Ionicons';
+import MIcon from 'react-native-vector-icons/MaterialIcons';
 import {Badge} from 'react-native-paper';
-
-import {
-  fetchData,
-  startRefreshing,
-  stopRefreshing,
-} from '../../../store/slices/surveySlice';
-import {RootState, AppDispatch} from '../../../store';
 
 type JobProps = {
   rowid: number;
@@ -72,32 +65,59 @@ const Job = ({item}: {item: JobProps}) => (
   </View>
 );
 
-const JobList = () => {
-  const dispatch = useDispatch<AppDispatch>();
-  const data = useSelector((state: RootState) => state.survey.data);
-  const refreshing = useSelector((state: RootState) => state.survey.refreshing);
+interface JobListProps {
+  data: JobProps[];
+  search: string;
+  refreshing: boolean;
+  onRefresh: () => void;
+  searchByTerm: string;
+}
 
-  useEffect(() => {
-    dispatch(fetchData());
-  }, [dispatch]);
+const JobList = ({
+  data,
+  search,
+  refreshing,
+  onRefresh,
+  searchByTerm,
+}: JobListProps) => {
+  type JobPropsKey = keyof JobProps;
 
-  const handleRefresh = () => {
-    dispatch(startRefreshing());
-    dispatch(fetchData()).finally(() => {
-      dispatch(stopRefreshing());
-    });
-  };
+  const filterData =
+    searchByTerm === ''
+      ? // Kalau search by belom dipilih
+        data.filter(item =>
+          Object.values(item).some(value =>
+            value.toString().toLowerCase().includes(search.toLowerCase()),
+          ),
+        )
+      : // Kalau search by sudah dipilih
+        data.filter(
+          item =>
+            typeof item[searchByTerm as JobPropsKey] === 'string' &&
+            (item[searchByTerm as JobPropsKey] as string)
+              .toLowerCase()
+              .includes(search.toLowerCase()),
+        );
 
   return (
     <View className="flex-1 w-full bg-[#ffffea]">
-      <FlatList
-        data={data}
-        renderItem={({item}) => <Job item={item} />}
-        keyExtractor={(item, index) => `${item.rowid}-${index}`}
-        refreshControl={
-          <RefreshControl refreshing={refreshing} onRefresh={handleRefresh} />
-        }
-      />
+      {filterData.length === 0 ? (
+        <View className="w-full h-full flex flex-col justify-center items-center">
+          <MIcon name="do-not-disturb-alt" size={80} color="black" />
+          <Text className="italic text-gray-600 capitalize text-xl">
+            No Data Found
+          </Text>
+        </View>
+      ) : (
+        <FlatList
+          data={filterData}
+          renderItem={({item}) => <Job item={item} />}
+          keyExtractor={(item, index) => `${item.rowid}-${index}`}
+          refreshControl={
+            <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+          }
+        />
+      )}
     </View>
   );
 };
