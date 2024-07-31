@@ -7,10 +7,10 @@ import Header from '../LayoutComponents/Header';
 import StatusBar from '../LayoutComponents/StatusBar';
 import Navbar from '../LayoutComponents/Navbar';
 
-import IncomingJobPage from './StackLayout/IncomingJobPage';
-import JobMonitoring from './StackLayout/JobMonitoring';
-import History from './StackLayout/History';
-import MySurvey from './StackLayout/MySurvey';
+import JobMonitoring from '../LayoutComponents/MainPageNav/JobMonitoring';
+import History from '../LayoutComponents/MainPageNav/History';
+import MySurvey from '../LayoutComponents/MainPageNav/MySurvey';
+import IncomingJobPage from '../LayoutComponents/MainPageNav/IncomingJobPage';
 
 type MainPageProps = NativeStackScreenProps<RootStackParamList, 'mainPage'>;
 

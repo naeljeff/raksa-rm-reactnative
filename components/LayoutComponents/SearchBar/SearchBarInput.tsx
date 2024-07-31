@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Feather from 'react-native-vector-icons/Feather';
-import {Text, View, TextInput, TouchableOpacity} from 'react-native';
+import {View, TextInput, TouchableOpacity} from 'react-native';
 
 import SearchBy from './SearchBy';
 import SortBy from './SortBy';

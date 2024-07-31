@@ -23,12 +23,15 @@ const App = () => {
     <Provider store={store}>
       <PaperProvider>
         <NavigationContainer>
-          <Stack.Navigator initialRouteName="login">
+          <Stack.Navigator
+            initialRouteName="login"
+            screenOptions={{
+              headerShown: false,
+            }}>
             <Stack.Screen
               name="login"
               component={LoginPage}
               options={{
-                headerShown: false,
                 gestureEnabled: false,
               }}
             />
@@ -36,11 +39,16 @@ const App = () => {
               name="mainPage"
               component={MainPage}
               options={{
-                headerShown: false,
                 gestureEnabled: false,
               }}
             />
-            <Stack.Screen name="formFUAIncoming" component={MainFUAPage} />
+            <Stack.Screen
+              name="formFUAIncoming"
+              component={MainFUAPage}
+              options={{
+                gestureEnabled: true,
+              }}
+            />
           </Stack.Navigator>
         </NavigationContainer>
       </PaperProvider>

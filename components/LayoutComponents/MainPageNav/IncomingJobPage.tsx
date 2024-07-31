@@ -11,9 +11,9 @@ import {
 } from '../../../store/slices/surveySlice';
 import {RootState, AppDispatch} from '../../../store';
 
-import SearchBarInput from '../../LayoutComponents/SearchBar/SearchBarInput';
-import Information from '../../LayoutComponents/Information';
-import JobList from '../../LayoutComponents/IncomingJob/JobList';
+import SearchBarInput from '../SearchBar/SearchBarInput';
+import Information from '../Information';
+import JobList from '../IncomingJob/JobList';
 import {RootStackParamList} from '../../../App';
 
 const IncomingJobPage = () => {
