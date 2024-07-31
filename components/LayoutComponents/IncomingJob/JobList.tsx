@@ -15,6 +15,7 @@ import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {RootStackParamList} from '../../../App';
 import {JobProps} from '../../../props/JobProps';
 import { calcAgingDate, formatDate } from '../../../utilities/function';
+import JobListMenu from './JobListMenu';
 
 interface JobPageProps {
   item: JobProps;
@@ -68,12 +69,9 @@ const Job = React.memo(({item, index, navigation}: JobPageProps) => {
         </View>
 
         {/* Status */}
-        <View className="flex-[0.1] flex-col justify-center items-center gap-y-1 pr-1.5">
-          <Text className="text-black capitalize">{item.status}</Text>
-          <TouchableOpacity
-            onPress={() => console.log(`Item: ${item.noPengajuanSurvey}`)}>
-            <Feather name="more-vertical" size={20} color="black" />
-          </TouchableOpacity>
+        <View className="flex-[0.1] flex-col justify-center items-center pr-1.5">
+          <Text className="text-black capitalize mb-2">{item.status}</Text>
+          <JobListMenu item={item}/>
         </View>
       </TouchableOpacity>
     </View>
