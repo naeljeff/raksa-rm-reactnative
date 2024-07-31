@@ -110,12 +110,12 @@ const SearchBarInput = ({
       <View className="w-full flex flex-row justify-between items-center mb-1">
         {/* Sort By */}
         <View className="w-[55%] h-[40px] flex flex-row gap-x-1 ml-0.5">
-          <View className="w-[50%] h-[30px] border border-black bg-white rounded-lg pl-2 py-1">
+          <View className="w-[40%] h-[30px] border border-black bg-white rounded-lg pl-2 py-1">
             {/* Sort Option */}
             <SortBy onSortByChange={onSortByChange} />
           </View>
 
-          <View className="w-[50%] h-[30px] text-sm border border-black bg-white rounded-lg pl-2 py-1">
+          <View className="w-[60%] h-[30px] text-sm border border-black bg-white rounded-lg pl-2 py-1">
             {/* Sort Order */}
             <OrderBy onOrderByChange={onOrderByChange} />
           </View>

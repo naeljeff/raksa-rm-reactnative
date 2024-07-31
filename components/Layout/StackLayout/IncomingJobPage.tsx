@@ -1,6 +1,8 @@
 import {View} from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
 import React, {useEffect, useState} from 'react';
+import {useNavigation} from '@react-navigation/native';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
 import {
   fetchData,
@@ -12,6 +14,7 @@ import {RootState, AppDispatch} from '../../../store';
 import SearchBarInput from '../../LayoutComponents/SearchBar/SearchBarInput';
 import Information from '../../LayoutComponents/Information';
 import JobList from '../../LayoutComponents/IncomingJob/JobList';
+import {RootStackParamList} from '../../../App';
 
 const IncomingJobPage = () => {
   const [searchTerm, setSearchTerm] = useState<string>('');
@@ -20,6 +23,8 @@ const IncomingJobPage = () => {
   const dispatch = useDispatch<AppDispatch>();
   const data = useSelector((state: RootState) => state.survey.data);
   const refreshing = useSelector((state: RootState) => state.survey.refreshing);
+  const navigation =
+    useNavigation<NativeStackNavigationProp<RootStackParamList, 'mainPage'>>();
 
   // console.log(searchTerm);
   useEffect(() => {
@@ -35,7 +40,11 @@ const IncomingJobPage = () => {
 
   return (
     <View className="w-full h-full flex flex-1 flex-col">
-      <SearchBarInput setSearchTerm={setSearchTerm} searchTab='IncomingJob' setSearchByTerm={setSearchByTerm}/>
+      <SearchBarInput
+        setSearchTerm={setSearchTerm}
+        searchTab="IncomingJob"
+        setSearchByTerm={setSearchByTerm}
+      />
 
       {/* Information */}
       <Information />
@@ -46,6 +55,7 @@ const IncomingJobPage = () => {
         searchByTerm={searchByTerm}
         refreshing={refreshing}
         onRefresh={handleRefresh}
+        navigation={navigation}
       />
     </View>
   );
