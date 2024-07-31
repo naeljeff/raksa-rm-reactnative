@@ -18,8 +18,8 @@ type MainFUAPageProps = {
   route: MainFUARouteProp;
 };
 
-const MainFUAPage = (props: MainFUAPageProps) => {
-  const {surveyId} = props.route.params;
+const MainFUAPage = ({route}: MainFUAPageProps) => {
+  const {item} = route.params;
   return (
     <View className="w-full h-full flex flex-col bg-[#ffffea]">
       {/* Header */}
@@ -27,7 +27,8 @@ const MainFUAPage = (props: MainFUAPageProps) => {
 
       {/* Form FUA Incoming */}
       <IncomingFUA />
-      <Text>{`Survey ID: ${surveyId}`}</Text>
+      <Text>{`Survey ID: ${item.noPengajuanSurvey}`}</Text>
+      <Text>{`Nama: ${item.jenisAsuransi}`}</Text>
     </View>
   );
 };

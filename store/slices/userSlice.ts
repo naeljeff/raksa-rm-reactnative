@@ -1,16 +1,7 @@
 import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
 import {validateUser} from '../../services/api/user/getUserLogin';
 import {RootState} from '..';
-
-type UserProps = {
-  userName: string;
-  fullName: string;
-  department: string;
-  currentPassword: string;
-  email: string;
-  messageCode: string;
-  message: string;
-};
+import { UserProps } from '../../props/UserProps';
 
 interface UserState {
   data: UserProps;

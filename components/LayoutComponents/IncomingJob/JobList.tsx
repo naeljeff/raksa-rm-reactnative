@@ -5,7 +5,7 @@ import {
   RefreshControl,
   TouchableOpacity,
 } from 'react-native';
-import React from 'react';
+import React, {useState, useCallback, useMemo} from 'react';
 import Icon from 'react-native-vector-icons/Ionicons';
 import MIcon from 'react-native-vector-icons/MaterialIcons';
 import Feather from 'react-native-vector-icons/Feather';
@@ -13,22 +13,7 @@ import {Badge} from 'react-native-paper';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
 import {RootStackParamList} from '../../../App';
-
-type JobProps = {
-  rowid: number;
-  noPengajuanSurvey: string;
-  unitNo: string;
-  alamat: string;
-  noTelp: string;
-  email: string;
-  createdAt: string;
-  merek: string;
-  tipe: string;
-  model: string;
-  jenisAsuransi: string;
-  status: string;
-  platNomor: string;
-};
+import {JobProps} from '../../../props/JobProps';
 
 interface JobPageProps {
   item: JobProps;
@@ -36,7 +21,7 @@ interface JobPageProps {
   navigation: NativeStackNavigationProp<RootStackParamList, 'mainPage'>;
 }
 
-const Job = ({item, index, navigation}: JobPageProps) => {
+const Job = React.memo(({item, index, navigation}: JobPageProps) => {
   const itemDate = new Date(item.createdAt);
   const formattedDate = `${String(itemDate.getDate()).padStart(
     2,
@@ -51,12 +36,12 @@ const Job = ({item, index, navigation}: JobPageProps) => {
   );
 
   const handleListPress = () => {
-    const surveyId = `${item.noPengajuanSurvey}/${item.unitNo}`;
     console.log(`Index: ${index} | Item: ${item.noPengajuanSurvey}`);
     navigation.navigate('formFUAIncoming', {
-      surveyId: surveyId,
+      item: item,
     });
   };
+
   return (
     <View className="w-screen py-0.5 px-1 gap-x-1 border-t border-black">
       <TouchableOpacity
@@ -73,13 +58,15 @@ const Job = ({item, index, navigation}: JobPageProps) => {
         {/* Informasi kendaraan */}
         <View className="flex-[0.6] flex-col gap-y-1">
           <Text className="font-bold text-black uppercase">
-            {item.noPengajuanSurvey}/{item.unitNo}
+            {item.noPengajuanSurvey}/{item.unitNo}/{item.nama}
           </Text>
           <Text className="text-black uppercase">
             {item.merek} - {item.tipe} - {item.model} | {item.platNomor}
           </Text>
           <Text className="text-black uppercase">{item.noTelp}</Text>
-          <Text className="text-black uppercase">{item.jenisAsuransi}</Text>
+          <Text className="text-black uppercase">{`${
+            item.jenisAsuransi
+          } + ${item.perluasan.join('; ')}`}</Text>
           <Text className="text-black uppercase">{item.alamat}</Text>
         </View>
 
@@ -100,7 +87,7 @@ const Job = ({item, index, navigation}: JobPageProps) => {
       </TouchableOpacity>
     </View>
   );
-};
+});
 
 interface JobListProps {
   data: JobProps[];
@@ -119,30 +106,66 @@ const JobList = ({
   searchByTerm,
   navigation,
 }: JobListProps) => {
+  const [page, setPage] = useState<number>(1);
+  const [loadMore, setLoadMore] = useState<boolean>(false);
+  const pageSize = 10;
+
   type JobPropsKey = keyof JobProps;
 
-  const filterData =
-    searchByTerm === ''
-      ? // Kalau search by belom dipilih
-        data.filter(item =>
-          Object.values(item).some(value =>
-            value.toString().toLowerCase().includes(search.toLowerCase()),
-          ),
-        )
-      : // Kalau search by sudah dipilih
-        data.filter(
-          item =>
-            typeof item[searchByTerm as JobPropsKey] === 'string' &&
-            (item[searchByTerm as JobPropsKey] as string)
-              .toLowerCase()
-              .includes(search.toLowerCase()),
-        );
+  const filterData = useMemo(() => {
+    const filtered =
+      searchByTerm === ''
+        ? // Kalau search by belom dipilih
+          data.filter(item =>
+            Object.values(item).some(value =>
+              value.toString().toLowerCase().includes(search.toLowerCase()),
+            ),
+          )
+        : // Kalau search by sudah dipilih
+          data.filter(
+            item =>
+              typeof item[searchByTerm as JobPropsKey] === 'string' &&
+              (item[searchByTerm as JobPropsKey] as string)
+                .toLowerCase()
+                .includes(search.toLowerCase()),
+          );
+    return filtered;
+  }, [data, search, searchByTerm]);
 
-  const sortedDataByDate = filterData.sort((a, b) => {
-    const dateA = new Date(a.createdAt).getTime();
-    const dateB = new Date(b.createdAt).getTime();
-    return dateB - dateA;
-  });
+  const sortedDataByDate = useMemo(() => {
+    return filterData.sort((a, b) => {
+      const dateA = new Date(a.createdAt).getTime();
+      const dateB = new Date(b.createdAt).getTime();
+      return dateB - dateA;
+    });
+  }, [filterData]);
+
+  const paginatedData = useMemo(() => {
+    return sortedDataByDate.slice(0, page * pageSize);
+  }, [sortedDataByDate, page]);
+
+  const handleLoadMore = useCallback(() => {
+    if (loadMore || paginatedData.length >= sortedDataByDate.length) return;
+    setLoadMore(true);
+
+    setTimeout(() => {
+      setPage(page + 1);
+      setLoadMore(false);
+    }, 1000);
+  }, [loadMore, paginatedData.length, sortedDataByDate.length]);
+
+  const renderItem = useCallback(
+    ({item, index}: {item: JobProps; index: number}) => (
+      <Job item={item} index={index} navigation={navigation} />
+    ),
+    [navigation],
+  );
+
+  const getKey = useCallback(
+    (item: JobProps, index: number) => `${item.rowid}-${index}`,
+    [],
+  );
+
   return (
     <View className="flex-1 w-full bg-[#ffffea]">
       {filterData.length === 0 ? (
@@ -154,14 +177,18 @@ const JobList = ({
         </View>
       ) : (
         <FlatList
-          data={sortedDataByDate}
-          renderItem={({item, index}) => (
-            <Job item={item} index={index} navigation={navigation} />
-          )}
-          keyExtractor={(item, index) => `${item.rowid}-${index}`}
+          data={paginatedData}
+          renderItem={renderItem}
+          keyExtractor={getKey}
           refreshControl={
             <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
           }
+          onEndReached={handleLoadMore}
+          onEndReachedThreshold={0.5}
+          initialNumToRender={pageSize}
+          maxToRenderPerBatch={pageSize}
+          windowSize={11}
+          removeClippedSubviews={true}
         />
       )}
     </View>

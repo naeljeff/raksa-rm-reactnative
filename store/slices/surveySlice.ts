@@ -1,22 +1,7 @@
 import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
 import {fetchSurveyData} from '../../services/api/survey/getSurveyData';
 import {RootState} from '..';
-
-type JobProps = {
-  rowid: number;
-  noPengajuanSurvey: string;
-  unitNo: string;
-  alamat: string;
-  noTelp: string;
-  email: string;
-  createdAt: string;
-  merek: string;
-  tipe: string;
-  model: string;
-  jenisAsuransi: string;
-  status: string;
-  platNomor:string;
-};
+import { JobProps } from '../../props/JobProps';
 
 interface SurveyState {
   data: JobProps[];

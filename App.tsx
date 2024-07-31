@@ -9,11 +9,12 @@ import store from './store';
 import LoginPage from './components/Layout/LoginPage';
 import MainPage from './components/Layout/MainPage';
 import MainFUAPage from './components/Layout/MainFUAPage';
+import { JobProps } from './props/JobProps';
 
 export type RootStackParamList = {
   login: undefined;
   mainPage: undefined;
-  formFUAIncoming: {surveyId: string};
+  formFUAIncoming: {item: JobProps};
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
