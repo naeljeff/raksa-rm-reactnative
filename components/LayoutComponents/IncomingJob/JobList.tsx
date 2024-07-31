@@ -14,6 +14,7 @@ import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
 import {RootStackParamList} from '../../../App';
 import {JobProps} from '../../../props/JobProps';
+import { calcAgingDate, formatDate } from '../../../utilities/function';
 
 interface JobPageProps {
   item: JobProps;
@@ -22,18 +23,8 @@ interface JobPageProps {
 }
 
 const Job = React.memo(({item, index, navigation}: JobPageProps) => {
-  const itemDate = new Date(item.createdAt);
-  const formattedDate = `${String(itemDate.getDate()).padStart(
-    2,
-    '0',
-  )}-${itemDate.toLocaleString('en-US', {month: 'short'})}-${String(
-    itemDate.getFullYear(),
-  ).slice(-2)}`;
-
-  const currDate = new Date();
-  const dayDiff = Math.round(
-    (currDate.getTime() - itemDate.getTime()) / (1000 * 60 * 60 * 24),
-  );
+  const dayDiff = calcAgingDate(item.createdAt);
+  const formattedDate = formatDate(item.createdAt);
 
   const handleListPress = () => {
     console.log(`Index: ${index} | Item: ${item.noPengajuanSurvey}`);
@@ -58,7 +49,7 @@ const Job = React.memo(({item, index, navigation}: JobPageProps) => {
         {/* Informasi kendaraan */}
         <View className="flex-[0.6] flex-col gap-y-1">
           <Text className="font-bold text-black uppercase">
-            {item.noPengajuanSurvey}/{item.unitNo}/{item.nama}
+            {item.noPengajuanSurvey}/{item.unitNo}
           </Text>
           <Text className="text-black uppercase">
             {item.merek} - {item.tipe} - {item.model} | {item.platNomor}

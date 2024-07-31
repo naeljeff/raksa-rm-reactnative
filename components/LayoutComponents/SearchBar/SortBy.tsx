@@ -33,10 +33,10 @@ const SortBy = ({onSortByChange}: SortProps) => {
       placeholder="Sort By"
       searchPlaceholder="Sort By"
       value={sortBy}
-      selectedTextStyle={{fontSize: 12}}
-      itemTextStyle={{fontSize: 12}}
-      inputSearchStyle={{fontSize: 12}}
-      placeholderStyle={{fontSize: 12}}
+      selectedTextStyle={{fontSize: 12, color: 'black'}}
+      itemTextStyle={{fontSize: 12, color: 'black'}}
+      inputSearchStyle={{fontSize: 12, color: 'black'}}
+      placeholderStyle={{fontSize: 12, color: 'black'}}
       style={{paddingHorizontal: 4}}
       onChange={selection => handleSortByChange(selection)}
     />

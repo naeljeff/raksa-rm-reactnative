@@ -15,6 +15,7 @@ const SearchBy = ({onSearchByChange, searchTab}: SearchProps) => {
     switch (searchTab) {
       case 'IncomingJob':
         setSearchByList([
+          {name: 'None', value: 'none'},
           {name: 'No Pengajuan', value: 'noPengajuanSurvey'},
           {name: 'Alamat Survey', value: 'alamat'},
           {name: 'No Telepon', value: 'noTelp'},
@@ -27,6 +28,7 @@ const SearchBy = ({onSearchByChange, searchTab}: SearchProps) => {
         break;
       case 'JobMonitoring':
         setSearchByList([
+          {name: 'None', value: 'none'},
           {name: 'No Pengajuan', value: 'noPengajuanSurvey'},
           {name: 'Nama Surveyor', value: 'surveyorName'},
           {name: 'Tanggal Request', value: 'requestDate'},
@@ -35,6 +37,7 @@ const SearchBy = ({onSearchByChange, searchTab}: SearchProps) => {
         break;
       case 'MySurvey':
         setSearchByList([
+          {name: 'None', value: 'none'},
           {name: 'No Pengajuan', value: 'noPengajuanSurvey'},
           {name: 'Alamat Survey', value: 'alamat'},
           {name: 'No Telepon', value: 'noTelp'},
@@ -50,8 +53,13 @@ const SearchBy = ({onSearchByChange, searchTab}: SearchProps) => {
   }, [searchTab]);
 
   const handleSearchBy = (option: {name: string; value: string}) => {
-    setSelected(option.value);
-    onSearchByChange(option.value);
+    if (option.value === 'none') {
+      setSelected(option.name);
+      onSearchByChange('');
+    } else {
+      setSelected(option.value);
+      onSearchByChange(option.value);
+    }
   };
   return (
     <View className="w-[33%] mt-4 ml-3">
@@ -65,10 +73,10 @@ const SearchBy = ({onSearchByChange, searchTab}: SearchProps) => {
         placeholder="Search By"
         searchPlaceholder="Search By"
         value={selected}
-        selectedTextStyle={{fontSize: 12}}
-        itemTextStyle={{fontSize: 12}}
-        inputSearchStyle={{fontSize: 12}}
-        placeholderStyle={{fontSize: 12}}
+        selectedTextStyle={{fontSize: 12, color: 'black'}}
+        itemTextStyle={{fontSize: 12, color: 'black'}}
+        inputSearchStyle={{fontSize: 12, color: 'black'}}
+        placeholderStyle={{fontSize: 12, color: 'black'}}
         style={{paddingHorizontal: 4}}
         onChange={option => handleSearchBy(option)}
       />

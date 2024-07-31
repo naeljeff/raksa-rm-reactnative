@@ -27,10 +27,10 @@ const OrderBy = ({onOrderByChange}: OrderProps) => {
       placeholder="Order By"
       searchPlaceholder="Order By"
       value={orderBy}
-      selectedTextStyle={{fontSize: 12}}
-      itemTextStyle={{fontSize: 12}}
-      inputSearchStyle={{fontSize: 12}}
-      placeholderStyle={{fontSize: 12}}
+      selectedTextStyle={{fontSize: 12, color: 'black'}}
+      itemTextStyle={{fontSize: 12, color: 'black'}}
+      inputSearchStyle={{fontSize: 12, color: 'black'}}
+      placeholderStyle={{fontSize: 12, color: 'black'}}
       style={{paddingHorizontal: 4, paddingTop: -2}}
       onChange={selection => handleOrderByChange(selection)}
     />

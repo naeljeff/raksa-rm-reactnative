@@ -79,7 +79,7 @@ const SearchBarInput = ({
             <TextInput
               className="w-[50%] text-black mr-8 py-1 placeholder:text-sm"
               placeholder="Search"
-              style={{fontSize: 12}}
+              style={{fontSize: 12, color: 'black'}}
               value={localSearch}
               onChangeText={handleInputChange}
             />

@@ -5,7 +5,9 @@ import React from 'react';
 
 import {RootStackParamList} from '../../App';
 import HeaderIncomingFUA from '../LayoutComponents/IncomingJob/FUAIncoming/HeaderIncomingFUA';
-import IncomingFUA from '../LayoutComponents/IncomingJob/FUAIncoming/IncomingFUA';
+import IncomingAppointment from '../LayoutComponents/IncomingJob/FUAIncoming/IncomingAppointment';
+import IncomingPersonalContact from '../LayoutComponents/IncomingJob/FUAIncoming/IncomingPersonalContact';
+import { calcAgingDate } from '../../utilities/function';
 
 type MainFUANavigationProp = NativeStackNavigationProp<
   RootStackParamList,
@@ -20,15 +22,28 @@ type MainFUAPageProps = {
 
 const MainFUAPage = ({route}: MainFUAPageProps) => {
   const {item} = route.params;
+
   return (
     <View className="w-full h-full flex flex-col bg-[#ffffea]">
       {/* Header */}
       <HeaderIncomingFUA />
 
-      {/* Form FUA Incoming */}
-      <IncomingFUA />
-      <Text>{`Survey ID: ${item.noPengajuanSurvey}`}</Text>
-      <Text>{`Nama: ${item.jenisAsuransi}`}</Text>
+      {/* Appointment Schedule */}
+      <IncomingAppointment
+        noPengajuanSurvey={item.noPengajuanSurvey}
+        unitNo={item.unitNo}
+        createdAt={item.createdAt}
+        aging={calcAgingDate(item.createdAt)}
+      />
+
+      {/* Personal Contact Schedule */}
+      <IncomingPersonalContact
+        nama={item.nama}
+        alamat={item.alamat}
+        noTelp={item.noTelp}
+        email={item.email}
+        catatan={item.catatan}
+      />
     </View>
   );
 };
