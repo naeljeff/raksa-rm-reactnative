@@ -4,6 +4,8 @@ import {RouteProp} from '@react-navigation/native';
 import React from 'react';
 
 import {RootStackParamList} from '../../App';
+import HeaderIncomingFUA from '../LayoutComponents/IncomingJob/FUAIncoming/HeaderIncomingFUA';
+import IncomingFUA from '../LayoutComponents/IncomingJob/FUAIncoming/IncomingFUA';
 
 type MainFUANavigationProp = NativeStackNavigationProp<
   RootStackParamList,
@@ -19,8 +21,12 @@ type MainFUAPageProps = {
 const MainFUAPage = (props: MainFUAPageProps) => {
   const {surveyId} = props.route.params;
   return (
-    <View>
-      <Text>MainFUAPage</Text>
+    <View className="w-full h-full flex flex-col bg-[#ffffea]">
+      {/* Header */}
+      <HeaderIncomingFUA />
+
+      {/* Form FUA Incoming */}
+      <IncomingFUA />
       <Text>{`Survey ID: ${surveyId}`}</Text>
     </View>
   );

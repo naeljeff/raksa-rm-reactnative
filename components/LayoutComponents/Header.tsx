@@ -4,7 +4,7 @@ import {Surface} from 'react-native-paper';
 import {CommonActions, useNavigation} from '@react-navigation/native';
 import Toast from 'react-native-simple-toast';
 import React from 'react';
-import {useDispatch, useSelector} from 'react-redux';
+import {useDispatch} from 'react-redux';
 
 import {
   fetchData,
