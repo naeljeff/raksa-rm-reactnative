@@ -21,6 +21,8 @@ import {RootStackParamList} from '../../../App';
 const IncomingJobPage = () => {
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [searchByTerm, setSearchByTerm] = useState<string>('');
+  const [sortBy, setSortBy] = useState<string>('');
+  const [orderBy, setOrderBy] = useState<string>('');
 
   const dispatch = useDispatch<AppDispatch>();
   const data = useSelector(selectData);
@@ -46,6 +48,8 @@ const IncomingJobPage = () => {
         setSearchTerm={setSearchTerm}
         searchTab="IncomingJob"
         setSearchByTerm={setSearchByTerm}
+        setSortBy={setSortBy}
+        setOrderBy={setOrderBy}
       />
 
       {/* Information */}
@@ -63,6 +67,8 @@ const IncomingJobPage = () => {
           refreshing={refreshing}
           onRefresh={handleRefresh}
           navigation={navigation}
+          sortBy={sortBy}
+          orderBy={orderBy}
         />
       )}
     </View>

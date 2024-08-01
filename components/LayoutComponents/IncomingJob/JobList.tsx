@@ -1,16 +1,12 @@
-import {
-  FlatList,
-  View,
-  Text,
-  RefreshControl,
-} from 'react-native';
-import React, {useState, useCallback, useMemo} from 'react';
+import {FlatList, View, Text, RefreshControl} from 'react-native';
+import React, {useState, useCallback, useMemo, useEffect} from 'react';
 import MIcon from 'react-native-vector-icons/MaterialIcons';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
 import {RootStackParamList} from '../../../App';
 import {JobProps} from '../../../props/JobProps';
 import Job from './Job';
+import {calcAgingDate} from '../../../utilities/function';
 
 interface JobListProps {
   data: JobProps[];
@@ -18,6 +14,8 @@ interface JobListProps {
   refreshing: boolean;
   onRefresh: () => void;
   searchByTerm: string;
+  sortBy: string;
+  orderBy: string;
   navigation: NativeStackNavigationProp<RootStackParamList, 'mainPage'>;
 }
 
@@ -28,6 +26,8 @@ const JobList = ({
   onRefresh,
   searchByTerm,
   navigation,
+  sortBy,
+  orderBy,
 }: JobListProps) => {
   const [page, setPage] = useState<number>(1);
   const [loadMore, setLoadMore] = useState<boolean>(false);
@@ -38,14 +38,12 @@ const JobList = ({
   const filterData = useMemo(() => {
     const filtered =
       searchByTerm === ''
-        ? // Kalau search by belom dipilih
-          data.filter(item =>
+        ? data.filter(item =>
             Object.values(item).some(value =>
               value.toString().toLowerCase().includes(search.toLowerCase()),
             ),
           )
-        : // Kalau search by sudah dipilih
-          data.filter(
+        : data.filter(
             item =>
               typeof item[searchByTerm as JobPropsKey] === 'string' &&
               (item[searchByTerm as JobPropsKey] as string)
@@ -56,23 +54,42 @@ const JobList = ({
   }, [data, search, searchByTerm]);
 
   const sortedDataByDate = useMemo(() => {
-    return filterData.sort((a, b) => {
-      const dateA = new Date(a.createdAt).getTime();
-      const dateB = new Date(b.createdAt).getTime();
-      return dateB - dateA;
-    });
-  }, [filterData]);
+    let sortedData = [...filterData];
+    if (sortBy === 'aging') {
+      sortedData.sort((a, b) => {
+        const agingA = calcAgingDate(a.createdAt);
+        const agingB = calcAgingDate(b.createdAt);
+        return orderBy === 'asc' ? agingA - agingB : agingB - agingA;
+      });
+    } else {
+      sortedData.sort((a, b) => {
+        const dateA = new Date(a.createdAt).getTime();
+        const dateB = new Date(b.createdAt).getTime();
+        if (sortBy === '') {
+          return orderBy === 'asc' ? dateA - dateB : dateB - dateA;
+        } else {
+          return orderBy === 'asc' ? dateA - dateB : dateB - dateA;
+        }
+      });
+    }
+    return sortedData;
+  }, [filterData, sortBy, orderBy]);
 
   const paginatedData = useMemo(() => {
     return sortedDataByDate.slice(0, page * pageSize);
   }, [sortedDataByDate, page]);
+
+  // Reset page when orderBy or sortBy changes
+  useEffect(() => {
+    setPage(1);
+  }, [sortBy, orderBy, search, searchByTerm]);
 
   const handleLoadMore = useCallback(() => {
     if (loadMore || paginatedData.length >= sortedDataByDate.length) return;
     setLoadMore(true);
 
     setTimeout(() => {
-      setPage(page + 1);
+      setPage(prevPage => prevPage + 1);
       setLoadMore(false);
     }, 1000);
   }, [loadMore, paginatedData.length, sortedDataByDate.length]);
@@ -88,6 +105,7 @@ const JobList = ({
     (item: JobProps, index: number) => `${item.rowid}-${index}`,
     [],
   );
+
   return (
     <View className="flex-1 w-full bg-[#ffffea]">
       {filterData.length === 0 ? (

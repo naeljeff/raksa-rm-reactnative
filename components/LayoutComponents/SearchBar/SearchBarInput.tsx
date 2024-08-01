@@ -12,19 +12,23 @@ interface SearchBarInputProps {
   setSearchTerm: (text: string) => void;
   setSearchByTerm: (text: string) => void;
   searchTab: string;
+  setSortBy: (text: string) => void;
+  setOrderBy: (text: string) => void;
 }
 
 const SearchBarInput = ({
   setSearchTerm,
   searchTab,
   setSearchByTerm,
+  setSortBy,
+  setOrderBy
 }: SearchBarInputProps) => {
   const [localSearch, setLocalSearch] = useState<string>('');
   const [searchBy, setSearchBy] = useState<boolean>(false);
   const [sortOrder, setSortOrder] = useState<string>('');
   const [selected, setSelected] = useState<string>('');
-  const [sortBy, setSortBy] = useState<string>('');
-  const [orderBy, setOrderBy] = useState<string>('');
+  const [localSortBy, setLocalSortBy] = useState<string>('');
+  const [localOrderBy, setLocalOrderBy] = useState<string>('');
 
   const handleClearPress = () => {
     setLocalSearch('');
@@ -54,13 +58,13 @@ const SearchBarInput = ({
   };
 
   const onSortByChange = (selection: string) => {
+    setLocalSortBy(selection);
     setSortBy(selection);
-    console.log(selection);
   };
 
   const onOrderByChange = (selection: string) => {
+    setLocalOrderBy(selection);
     setOrderBy(selection);
-    console.log(selection);
   };
 
   return (

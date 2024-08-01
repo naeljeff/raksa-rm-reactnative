@@ -25,7 +25,7 @@ var Survey = react_1["default"].memo(function (_a) {
                     item.noPengajuanSurvey,
                     "/",
                     item.unitNo),
-                react_1["default"].createElement(react_native_1.Text, { className: "text-black uppercase" },
+                react_1["default"].createElement(react_native_1.Text, { className: "text-xs text-black uppercase" },
                     item.merek,
                     " - ",
                     item.tipe,
@@ -33,15 +33,15 @@ var Survey = react_1["default"].memo(function (_a) {
                     item.model,
                     " | ",
                     item.platNomor),
-                react_1["default"].createElement(react_native_1.Text, { className: "text-black uppercase" }, item.noTelp),
-                react_1["default"].createElement(react_native_1.Text, { className: "text-black uppercase" }, item.jenisAsuransi + " + " + item.perluasan.join('; ')),
-                react_1["default"].createElement(react_native_1.Text, { className: "text-black uppercase" }, item.alamat)),
-            react_1["default"].createElement(react_native_1.View, { className: "flex-[0.2] flex-col space-y-1" },
-                react_1["default"].createElement(react_native_1.Text, { className: "text-black" },
+                react_1["default"].createElement(react_native_1.Text, { className: "text-xs text-black uppercase" }, item.noTelp),
+                react_1["default"].createElement(react_native_1.Text, { className: "text-xs text-black uppercase" }, item.jenisAsuransi + " + " + item.perluasan.join('; ')),
+                react_1["default"].createElement(react_native_1.Text, { className: "text-xs text-black uppercase" }, item.alamat)),
+            react_1["default"].createElement(react_native_1.View, { className: "flex-[0.15] flex-col space-y-1" },
+                react_1["default"].createElement(react_native_1.Text, { className: "text-xs text-black" },
                     dayDiff,
                     " Days"),
-                react_1["default"].createElement(react_native_1.Text, { className: "text-black" }, formattedDate)),
+                react_1["default"].createElement(react_native_1.Text, { className: "text-xs text-black" }, formattedDate)),
             react_1["default"].createElement(react_native_1.View, { className: "flex-[0.2] flex-col justify-center items-center pr-1.5" },
-                react_1["default"].createElement(react_native_1.Text, { className: "text-sm text-black capitalize mb-2" }, item.status)))));
+                react_1["default"].createElement(react_native_1.Text, { className: "text-xs text-black uppercase mb-2" }, item.status)))));
 });
 exports["default"] = Survey;
