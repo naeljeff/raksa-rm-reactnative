@@ -9,6 +9,11 @@ export type JobProps = {
   createdAt: string;
   modifiedAt: string;
   surveyToken: string;
+  priority: string;
+  source: string;
+  emailRequest: string;
+  sobCode: string;
+  mkgGroup: string;
 
   unitNo: string;
   merek: string;

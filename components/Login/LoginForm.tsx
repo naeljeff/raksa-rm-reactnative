@@ -123,7 +123,7 @@ const LoginForm = ({navigation}: LoginFormProps) => {
             value={formInput.password}
             right={
               <TextInput.Icon
-                icon={showPassword ? 'eye' : 'eye-off'}
+                icon={showPassword ? 'eye-off' : 'eye'}
                 onPress={() => setShowPassword(!showPassword)}
               />
             }

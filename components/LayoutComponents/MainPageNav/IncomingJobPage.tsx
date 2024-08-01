@@ -41,7 +41,7 @@ const IncomingJobPage = () => {
   };
 
   return (
-    <View className=" flex flex-1 flex-col">
+    <View className="flex flex-1 flex-col">
       <SearchBarInput
         setSearchTerm={setSearchTerm}
         searchTab="IncomingJob"
@@ -52,7 +52,7 @@ const IncomingJobPage = () => {
       <Information />
 
       {refreshing && data.length === 0 ? (
-        <View className="w-full flex-1 bg-gray-100 inset-0 justify-center items-center">
+        <View className="w-full flex-1 bg-[#ffffea] inset-0 justify-center items-center">
           <ActivityIndicator size="large" color="#ffbc3c" />
         </View>
       ) : (

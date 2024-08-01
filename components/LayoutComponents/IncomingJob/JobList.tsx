@@ -88,7 +88,6 @@ const JobList = ({
     (item: JobProps, index: number) => `${item.rowid}-${index}`,
     [],
   );
-
   return (
     <View className="flex-1 w-full bg-[#ffffea]">
       {filterData.length === 0 ? (

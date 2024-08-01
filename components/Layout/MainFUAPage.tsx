@@ -22,7 +22,7 @@ type MainFUAPageProps = {
 
 const MainFUAPage = ({route}: MainFUAPageProps) => {
   const {item} = route.params;
-
+  console.log(item)
   return (
     <View className="w-full h-full flex flex-col bg-[#ffffea]">
       {/* Header */}
@@ -33,7 +33,9 @@ const MainFUAPage = ({route}: MainFUAPageProps) => {
         noPengajuanSurvey={item.noPengajuanSurvey}
         unitNo={item.unitNo}
         createdAt={item.createdAt}
+        emailRequest={item.emailRequest}
         aging={calcAgingDate(item.createdAt)}
+        priority={item.priority}
       />
 
       {/* Personal Contact Schedule */}

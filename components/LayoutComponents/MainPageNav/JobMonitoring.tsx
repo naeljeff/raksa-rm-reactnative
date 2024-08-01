@@ -9,7 +9,7 @@ const JobMonitoring = () => {
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [searchByTerm, setSearchByTerm] = useState<string>('');
   return (
-    <View className="w-full h-full flex flex-col">
+    <View className="flex flex-1 flex-col">
       <SearchBarInput
         setSearchTerm={setSearchTerm}
         searchTab="JobMonitoring"

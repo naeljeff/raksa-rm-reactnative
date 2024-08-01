@@ -7,14 +7,18 @@ type IncomingAppointment = {
   noPengajuanSurvey: string;
   unitNo: string;
   createdAt: string;
+  emailRequest: string;
   aging: number;
+  priority: string;
 };
 
 const IncomingAppointment = ({
   noPengajuanSurvey,
   unitNo,
   createdAt,
+  emailRequest,
   aging,
+  priority
 }: IncomingAppointment) => {
   return (
     <View className="w-full flex flex-col items-start justify-center mb-2">
@@ -54,7 +58,7 @@ const IncomingAppointment = ({
             <Text className="text-black capitalize">:</Text>
           </View>
           <Text className="flex-1 text-black text-xs uppercase py-1 px-2 border border-gray-200 bg-gray-100 rounded">
-            Email
+            {emailRequest}
           </Text>
         </View>
 
@@ -87,7 +91,7 @@ const IncomingAppointment = ({
             <Text className="text-black capitalize">:</Text>
           </View>
           <Text className="flex-1 text-black text-xs uppercase py-1 px-2 border border-gray-200 bg-gray-100 rounded">
-            High
+            {priority}
           </Text>
         </View>
       </View>

@@ -27,7 +27,7 @@ const Job = React.memo(({item, index, navigation}: JobPageProps) => {
   };
 
   return (
-    <View className="w-screen py-0.5 px-1 gap-x-1 border-t border-black">
+    <View className="w-screen py-0.5 px-1 gap-x-1 border-b border-black">
       <TouchableOpacity
         onPress={handleListPress}
         className="w-screen flex flex-row justify-start items-center">
