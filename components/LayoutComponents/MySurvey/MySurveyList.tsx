@@ -6,6 +6,7 @@ import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {RootStackParamList} from '../../../App';
 import {JobProps} from '../../../props/JobProps';
 import Survey from './Survey';
+import { calcAgingDate } from '../../../utilities/function';
 
 interface ProcessedSurveyList {
   data: JobProps[];
@@ -13,6 +14,8 @@ interface ProcessedSurveyList {
   refreshing: boolean;
   onRefresh: () => void;
   searchByTerm: string;
+  sortBy: string;
+  orderBy: string;
   navigation: NativeStackNavigationProp<RootStackParamList, 'mainPage'>;
 }
 
@@ -23,6 +26,8 @@ const MySurveyList = ({
   onRefresh,
   searchByTerm,
   navigation,
+  sortBy,
+  orderBy
 }: ProcessedSurveyList) => {
   const [page, setPage] = useState<number>(1);
   const [loadMore, setLoadMore] = useState<boolean>(false);
@@ -49,12 +54,26 @@ const MySurveyList = ({
   }, [data, search, searchByTerm]);
 
   const sortedDataByDate = useMemo(() => {
-    return filterProcessedData.sort((a, b) => {
-      const dateA = new Date(a.createdAt).getTime();
-      const dateB = new Date(b.createdAt).getTime();
-      return dateB - dateA;
-    });
-  }, [filterProcessedData]);
+    let sortedData = [...filterProcessedData];
+    if (sortBy === 'aging') {
+      sortedData.sort((a, b) => {
+        const agingA = calcAgingDate(a.createdAt);
+        const agingB = calcAgingDate(b.createdAt);
+        return orderBy === 'asc' ? agingA - agingB : agingB - agingA;
+      });
+    } else {
+      sortedData.sort((a, b) => {
+        const dateA = new Date(a.createdAt).getTime();
+        const dateB = new Date(b.createdAt).getTime();
+        if (sortBy === '') {
+          return orderBy === 'asc' ? dateA - dateB : dateB - dateA;
+        } else {
+          return orderBy === 'asc' ? dateA - dateB : dateB - dateA;
+        }
+      });
+    }
+    return sortedData;
+  }, [filterProcessedData, sortBy, orderBy]);
 
   const paginatedData = useMemo(() => {
     return sortedDataByDate.slice(0, page * pageSize);

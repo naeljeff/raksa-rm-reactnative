@@ -21,6 +21,8 @@ import MySurveyList from '../MySurvey/MySurveyList';
 const MySurvey = () => {
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [searchByTerm, setSearchByTerm] = useState<string>('');
+  const [sortBy, setSortBy] = useState<string>('');
+  const [orderBy, setOrderBy] = useState<string>('');
 
   const dispatch = useDispatch<AppDispatch>();
   const processedData = useSelector(selectProcessedData);
@@ -46,6 +48,8 @@ const MySurvey = () => {
         setSearchTerm={setSearchTerm}
         searchTab="MySurvey"
         setSearchByTerm={setSearchByTerm}
+        setSortBy={setSortBy}
+        setOrderBy={setOrderBy}
       />
 
       {/* Information */}
@@ -63,6 +67,8 @@ const MySurvey = () => {
           refreshing={processedRefreshing}
           onRefresh={handleProcessedRefresh}
           navigation={navigation}
+          sortBy={sortBy}
+          orderBy={orderBy}
         />
       )}
     </View>

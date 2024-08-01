@@ -8,12 +8,17 @@ import MonitoringList from '../JobMonitoring/MonitoringList';
 const JobMonitoring = () => {
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [searchByTerm, setSearchByTerm] = useState<string>('');
+  const [sortBy, setSortBy] = useState<string>('');
+  const [orderBy, setOrderBy] = useState<string>('');
+
   return (
     <View className="flex flex-1 flex-col">
       <SearchBarInput
         setSearchTerm={setSearchTerm}
         searchTab="JobMonitoring"
         setSearchByTerm={setSearchByTerm}
+        setSortBy={setSortBy}
+        setOrderBy={setOrderBy}
       />
 
       {/* Information */}

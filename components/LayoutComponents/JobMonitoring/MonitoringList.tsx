@@ -10,6 +10,7 @@ import {MonitoringProps} from '../../../props/MonitoringProps';
 const MonitoringList = () => {
   const [page, setPage] = useState<number>(1);
   const [loadMore, setLoadMore] = useState<boolean>(false);
+  
 
   const tempData: MonitoringProps[] = [
     {

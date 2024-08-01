@@ -1,11 +1,19 @@
 "use strict";
+var __spreadArrays = (this && this.__spreadArrays) || function () {
+    for (var s = 0, i = 0, il = arguments.length; i < il; i++) s += arguments[i].length;
+    for (var r = Array(s), k = 0, i = 0; i < il; i++)
+        for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++)
+            r[k] = a[j];
+    return r;
+};
 exports.__esModule = true;
 var react_native_1 = require("react-native");
 var react_1 = require("react");
 var MaterialIcons_1 = require("react-native-vector-icons/MaterialIcons");
 var Survey_1 = require("./Survey");
+var function_1 = require("../../../utilities/function");
 var MySurveyList = function (_a) {
-    var data = _a.data, search = _a.search, refreshing = _a.refreshing, onRefresh = _a.onRefresh, searchByTerm = _a.searchByTerm, navigation = _a.navigation;
+    var data = _a.data, search = _a.search, refreshing = _a.refreshing, onRefresh = _a.onRefresh, searchByTerm = _a.searchByTerm, navigation = _a.navigation, sortBy = _a.sortBy, orderBy = _a.orderBy;
     var _b = react_1.useState(1), page = _b[0], setPage = _b[1];
     var _c = react_1.useState(false), loadMore = _c[0], setLoadMore = _c[1];
     var pageSize = 10;
@@ -25,12 +33,28 @@ var MySurveyList = function (_a) {
         return filtered;
     }, [data, search, searchByTerm]);
     var sortedDataByDate = react_1.useMemo(function () {
-        return filterProcessedData.sort(function (a, b) {
-            var dateA = new Date(a.createdAt).getTime();
-            var dateB = new Date(b.createdAt).getTime();
-            return dateB - dateA;
-        });
-    }, [filterProcessedData]);
+        var sortedData = __spreadArrays(filterProcessedData);
+        if (sortBy === 'aging') {
+            sortedData.sort(function (a, b) {
+                var agingA = function_1.calcAgingDate(a.createdAt);
+                var agingB = function_1.calcAgingDate(b.createdAt);
+                return orderBy === 'asc' ? agingA - agingB : agingB - agingA;
+            });
+        }
+        else {
+            sortedData.sort(function (a, b) {
+                var dateA = new Date(a.createdAt).getTime();
+                var dateB = new Date(b.createdAt).getTime();
+                if (sortBy === '') {
+                    return orderBy === 'asc' ? dateA - dateB : dateB - dateA;
+                }
+                else {
+                    return orderBy === 'asc' ? dateA - dateB : dateB - dateA;
+                }
+            });
+        }
+        return sortedData;
+    }, [filterProcessedData, sortBy, orderBy]);
     var paginatedData = react_1.useMemo(function () {
         return sortedDataByDate.slice(0, page * pageSize);
     }, [sortedDataByDate, page]);
