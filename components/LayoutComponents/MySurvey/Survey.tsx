@@ -7,15 +7,14 @@ import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {RootStackParamList} from '../../../App';
 import {JobProps} from '../../../props/JobProps';
 import {calcAgingDate, formatDate} from '../../../utilities/function';
-import JobListMenu from './JobListMenu';
 
-interface JobPageProps {
+interface MySurveyPageProps {
   item: JobProps;
   index: number;
   navigation: NativeStackNavigationProp<RootStackParamList, 'mainPage'>;
 }
 
-const Job = React.memo(({item, index, navigation}: JobPageProps) => {
+const Survey = React.memo(({item, index, navigation}: MySurveyPageProps) => {
   const dayDiff = calcAgingDate(item.createdAt);
   const formattedDate = formatDate(item.createdAt);
 
@@ -40,7 +39,7 @@ const Job = React.memo(({item, index, navigation}: JobPageProps) => {
         </View>
 
         {/* Informasi kendaraan */}
-        <View className="flex-[0.6] flex-col gap-y-1">
+        <View className="flex-[0.55] flex-col gap-y-1">
           <Text className="font-bold text-black uppercase">
             {item.noPengajuanSurvey}/{item.unitNo}
           </Text>
@@ -55,18 +54,18 @@ const Job = React.memo(({item, index, navigation}: JobPageProps) => {
         </View>
 
         {/* Due Date */}
-        <View className="flex-[0.2] flex-col gap-y-1">
+        <View className="flex-[0.2] flex-col space-y-1">
           <Text className="text-black">{dayDiff} Days</Text>
           <Text className="text-black">{formattedDate}</Text>
         </View>
 
         {/* Status */}
-        <View className="flex-[0.1] flex-col justify-center items-center pr-1.5">
-          <Text className="text-black capitalize mb-2">{item.status}</Text>
-          <JobListMenu item={item} />
+        <View className="flex-[0.2] flex-col justify-center items-center pr-1.5">
+          <Text className="text-sm text-black capitalize mb-2">{item.status}</Text>
         </View>
       </TouchableOpacity>
     </View>
   );
 });
-export default Job;
+
+export default Survey;

@@ -38,7 +38,7 @@ const MainPage = ({route}: MainPageProps) => {
   return (
     <View className="w-full h-full flex flex-col">
       {/* Header */}
-      <Header />
+      <Header menuOption={menuOptions}/>
 
       {/* Status Bar */}
       <StatusBar />
