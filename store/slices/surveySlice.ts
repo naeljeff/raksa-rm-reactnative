@@ -1,20 +1,7 @@
 import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
 import {fetchSurveyData} from '../../services/api/survey/getSurveyData';
-import { RootState } from '..';
-
-type JobProps = {
-  rowid: number;
-  noPengajuanSurvey: string;
-  unitNo: string;
-  alamat: string;
-  noTelp: string;
-  email: string;
-  createdAt: string;
-  merek: string;
-  tipe: string;
-  model: string;
-  jenisAsuransi: string;
-};
+import {RootState} from '..';
+import {JobProps} from '../../props/JobProps';
 
 interface SurveyState {
   data: JobProps[];
@@ -65,5 +52,7 @@ const surveySlice = createSlice({
 });
 
 export const {startRefreshing, stopRefreshing} = surveySlice.actions;
+export const selectData = (state: RootState) => state.survey.data;
+export const selectRefreshing = (state: RootState) => state.survey.refreshing;
 export const getDataCount = (state: RootState) => state.survey.data.length;
 export default surveySlice.reducer;

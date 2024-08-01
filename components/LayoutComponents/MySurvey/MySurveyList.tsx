@@ -1,14 +1,14 @@
 import {FlatList, View, Text, RefreshControl} from 'react-native';
-import React, {useState, useCallback, useMemo, useEffect} from 'react';
+import React, {useState, useCallback, useMemo} from 'react';
 import MIcon from 'react-native-vector-icons/MaterialIcons';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
 import {RootStackParamList} from '../../../App';
 import {JobProps} from '../../../props/JobProps';
-import Job from './Job';
-import {calcAgingDate} from '../../../utilities/function';
+import Survey from './Survey';
+import { calcAgingDate } from '../../../utilities/function';
 
-interface JobListProps {
+interface ProcessedSurveyList {
   data: JobProps[];
   search: string;
   refreshing: boolean;
@@ -19,7 +19,7 @@ interface JobListProps {
   navigation: NativeStackNavigationProp<RootStackParamList, 'mainPage'>;
 }
 
-const JobList = ({
+const MySurveyList = ({
   data,
   search,
   refreshing,
@@ -27,15 +27,15 @@ const JobList = ({
   searchByTerm,
   navigation,
   sortBy,
-  orderBy,
-}: JobListProps) => {
+  orderBy
+}: ProcessedSurveyList) => {
   const [page, setPage] = useState<number>(1);
   const [loadMore, setLoadMore] = useState<boolean>(false);
   const pageSize = 10;
 
-  type JobPropsKey = keyof JobProps;
+  type ProcessedPropsKey = keyof JobProps;
 
-  const filterData = useMemo(() => {
+  const filterProcessedData = useMemo(() => {
     const filtered =
       searchByTerm === ''
         ? data.filter(item =>
@@ -45,8 +45,8 @@ const JobList = ({
           )
         : data.filter(
             item =>
-              typeof item[searchByTerm as JobPropsKey] === 'string' &&
-              (item[searchByTerm as JobPropsKey] as string)
+              typeof item[searchByTerm as ProcessedPropsKey] === 'string' &&
+              (item[searchByTerm as ProcessedPropsKey] as string)
                 .toLowerCase()
                 .includes(search.toLowerCase()),
           );
@@ -54,7 +54,7 @@ const JobList = ({
   }, [data, search, searchByTerm]);
 
   const sortedDataByDate = useMemo(() => {
-    let sortedData = [...filterData];
+    let sortedData = [...filterProcessedData];
     if (sortBy === 'aging') {
       sortedData.sort((a, b) => {
         const agingA = calcAgingDate(a.createdAt);
@@ -73,30 +73,25 @@ const JobList = ({
       });
     }
     return sortedData;
-  }, [filterData, sortBy, orderBy]);
+  }, [filterProcessedData, sortBy, orderBy]);
 
   const paginatedData = useMemo(() => {
     return sortedDataByDate.slice(0, page * pageSize);
   }, [sortedDataByDate, page]);
-
-  // Reset page when orderBy or sortBy changes
-  useEffect(() => {
-    setPage(1);
-  }, [sortBy, orderBy, search, searchByTerm]);
 
   const handleLoadMore = useCallback(() => {
     if (loadMore || paginatedData.length >= sortedDataByDate.length) return;
     setLoadMore(true);
 
     setTimeout(() => {
-      setPage(prevPage => prevPage + 1);
+      setPage(page + 1);
       setLoadMore(false);
     }, 1000);
   }, [loadMore, paginatedData.length, sortedDataByDate.length]);
 
   const renderItem = useCallback(
     ({item, index}: {item: JobProps; index: number}) => (
-      <Job item={item} index={index} navigation={navigation} />
+      <Survey item={item} index={index} navigation={navigation} />
     ),
     [navigation],
   );
@@ -108,11 +103,11 @@ const JobList = ({
 
   return (
     <View className="flex-1 w-full bg-[#ffffea]">
-      {filterData.length === 0 ? (
+      {filterProcessedData.length === 0 ? (
         <View className="w-full h-full flex flex-col justify-center items-center">
           <MIcon name="do-not-disturb-alt" size={80} color="black" />
           <Text className="italic text-gray-600 capitalize text-xl">
-            No Data Found
+            No Survey Found
           </Text>
         </View>
       ) : (
@@ -135,4 +130,4 @@ const JobList = ({
   );
 };
 
-export default JobList;
+export default MySurveyList;

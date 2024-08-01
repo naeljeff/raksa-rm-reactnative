@@ -1,6 +1,7 @@
 import { Text, View } from 'react-native'
 import React from 'react'
-import SearchBarHistory from '../../LayoutComponents/SearchBar/SearchBarHistory'
+
+import SearchBarHistory from '../SearchBar/SearchBarHistory'
 
 const History = () => {
   return (

@@ -52,7 +52,7 @@ const Navbar = ({onMenuChange}: NavbarProps) => {
                 {idx === 0 && (
                   <Badge
                     size={16}
-                    className={`absolute ${
+                    className={`absolute bg-red-500 ${
                       index === 0
                         ? 'top-[-3px] right-[-5px]'
                         : 'top-[-7px] right-[-8px]'

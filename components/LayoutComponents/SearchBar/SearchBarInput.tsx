@@ -1,29 +1,45 @@
 import React, {useState} from 'react';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Feather from 'react-native-vector-icons/Feather';
-import {Text, View, TextInput, TouchableOpacity} from 'react-native';
+import {View, TextInput, TouchableOpacity} from 'react-native';
 
 import SearchBy from './SearchBy';
 import SortBy from './SortBy';
 import OrderBy from './OrderBy';
 import {Surface} from 'react-native-paper';
 
-const SearchBarInput = () => {
-  const [search, setSearch] = useState<string>('');
+interface SearchBarInputProps {
+  setSearchTerm: (text: string) => void;
+  setSearchByTerm: (text: string) => void;
+  searchTab: string;
+  setSortBy: (text: string) => void;
+  setOrderBy: (text: string) => void;
+}
+
+const SearchBarInput = ({
+  setSearchTerm,
+  searchTab,
+  setSearchByTerm,
+  setSortBy,
+  setOrderBy
+}: SearchBarInputProps) => {
+  const [localSearch, setLocalSearch] = useState<string>('');
   const [searchBy, setSearchBy] = useState<boolean>(false);
   const [sortOrder, setSortOrder] = useState<string>('');
   const [selected, setSelected] = useState<string>('');
-  const [sortBy, setSortBy] = useState<string>('');
-  const [orderBy, setOrderBy] = useState<string>('');
+  const [localSortBy, setLocalSortBy] = useState<string>('');
+  const [localOrderBy, setLocalOrderBy] = useState<string>('');
 
   const handleClearPress = () => {
-    setSearch('');
+    setLocalSearch('');
     setSearchBy(false);
+    setSearchTerm('');
   };
 
   const handleInputChange = (text: string) => {
-    setSearch(text);
+    setLocalSearch(text);
     setSearchBy(true);
+    setSearchTerm(text);
   };
 
   const handleSearchIcon = () => {
@@ -35,20 +51,20 @@ const SearchBarInput = () => {
   };
 
   // Filter
-
   const onSearchByChange = (selection: string) => {
     setSelected(selection);
-    console.log(selection);
+    setSearchByTerm(selection);
+
   };
 
   const onSortByChange = (selection: string) => {
+    setLocalSortBy(selection);
     setSortBy(selection);
-    console.log(selection);
   };
 
   const onOrderByChange = (selection: string) => {
+    setLocalOrderBy(selection);
     setOrderBy(selection);
-    console.log(selection);
   };
 
   return (
@@ -67,13 +83,13 @@ const SearchBarInput = () => {
             <TextInput
               className="w-[50%] text-black mr-8 py-1 placeholder:text-sm"
               placeholder="Search"
-              style={{fontSize: 12}}
-              value={search}
+              style={{fontSize: 12, color: 'black'}}
+              value={localSearch}
               onChangeText={handleInputChange}
             />
 
             {/* Clear Input */}
-            {search.length > 0 && (
+            {localSearch.length > 0 && (
               <TouchableOpacity
                 onPress={handleClearPress}
                 className="absolute right-36">
@@ -85,7 +101,10 @@ const SearchBarInput = () => {
 
             {/* Filter */}
             <View className="h-[50px] w-full -ml-4 mb-1">
-              <SearchBy onSearchByChange={onSearchByChange} />
+              <SearchBy
+                onSearchByChange={onSearchByChange}
+                searchTab={searchTab}
+              />
             </View>
           </View>
         </View>
@@ -95,12 +114,12 @@ const SearchBarInput = () => {
       <View className="w-full flex flex-row justify-between items-center mb-1">
         {/* Sort By */}
         <View className="w-[55%] h-[40px] flex flex-row gap-x-1 ml-0.5">
-          <View className="w-[50%] h-[30px] border border-black bg-white rounded-lg pl-2 py-1">
+          <View className="w-[40%] h-[30px] border border-black bg-white rounded-lg pl-2 py-1">
             {/* Sort Option */}
             <SortBy onSortByChange={onSortByChange} />
           </View>
 
-          <View className="w-[50%] h-[30px] text-sm border border-black bg-white rounded-lg pl-2 py-1">
+          <View className="w-[60%] h-[30px] text-sm border border-black bg-white rounded-lg pl-2 py-1">
             {/* Sort Order */}
             <OrderBy onOrderByChange={onOrderByChange} />
           </View>

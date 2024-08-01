@@ -9,22 +9,23 @@ const SortBy = ({onSortByChange}: SortProps) => {
   const [sortBy, setSortBy] = useState<string>('');
 
   const sortByList = [
-    {name: 'Item 1', value: '1'},
-    {name: 'Item 2', value: '2'},
-    {name: 'Item 3', value: '3'},
-    {name: 'Item 4', value: '4'},
-    {name: 'Item 5', value: '5'},
+    {name: 'Aging', value: 'aging'},
+    {name: 'None', value: 'none'},
   ];
 
   const handleSortByChange = (selection: {name: string; value: string}) => {
-    setSortBy(selection.value);
-    onSortByChange(selection.value);
+    if (selection.value === 'none') {
+      setSortBy(selection.name);
+      onSortByChange('');
+    } else {
+      setSortBy(selection.value);
+      onSortByChange(selection.value);
+    }
   };
 
   return (
     <Dropdown
       data={sortByList}
-      search
       activeColor="#ffffea"
       maxHeight={300}
       labelField="name"
@@ -32,10 +33,10 @@ const SortBy = ({onSortByChange}: SortProps) => {
       placeholder="Sort By"
       searchPlaceholder="Sort By"
       value={sortBy}
-      selectedTextStyle={{fontSize: 12}}
-      itemTextStyle={{fontSize: 12}}
-      inputSearchStyle={{fontSize: 12}}
-      placeholderStyle={{fontSize: 12}}
+      selectedTextStyle={{fontSize: 12, color: 'black'}}
+      itemTextStyle={{fontSize: 12, color: 'black'}}
+      inputSearchStyle={{fontSize: 12, color: 'black'}}
+      placeholderStyle={{fontSize: 12, color: 'black'}}
       style={{paddingHorizontal: 4}}
       onChange={selection => handleSortByChange(selection)}
     />

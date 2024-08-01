@@ -1,9 +1,9 @@
 import axios from 'axios';
 
-const BASE_URL: string = process.env.BASE_GET_SURVEY_URL || '';
-const KEY_ID: string = process.env.KEY_ID_SURVEY || '';
+const BASE_URL: string = process.env.BASE_GET_PROCESSED_SURVEY_URL || '';
+const KEY_ID: string = process.env.KEY_ID_PROCESSED_SURVEY || '';
 
-export const fetchSurveyData = async () => {
+export const fetchProcessedSurveyData = async () => {
   try {
     const res = await axios.post(
       BASE_URL,

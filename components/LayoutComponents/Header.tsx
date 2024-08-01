@@ -3,20 +3,29 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import {Surface} from 'react-native-paper';
 import {CommonActions, useNavigation} from '@react-navigation/native';
 import Toast from 'react-native-simple-toast';
-import React from 'react';
+import React, {useState} from 'react';
 import {useDispatch} from 'react-redux';
+
 import {
   fetchData,
   startRefreshing,
   stopRefreshing,
 } from '../../store/slices/surveySlice';
+import {logout} from '../../store/slices/userSlice';
 import {AppDispatch} from '../../store';
+import {
+  fetchProcessedData,
+  startRefreshingProcessedSurvey,
+  stopRefreshingProcessedSurvey,
+} from '../../store/slices/processedSurveySlice';
 
-const Header = () => {
+const Header = ({menuOption}: {menuOption: string}) => {
   const navigation = useNavigation();
   const dispatch = useDispatch<AppDispatch>();
 
   const handleLogout = () => {
+    dispatch(logout());
+
     navigation.dispatch(
       CommonActions.reset({
         index: 0,
@@ -27,10 +36,22 @@ const Header = () => {
   };
 
   const handleRefresh = () => {
-    dispatch(startRefreshing());
-    dispatch(fetchData()).finally(() => {
-      dispatch(stopRefreshing());
-    });
+    switch (menuOption) {
+      case 'Incoming Job':
+        dispatch(startRefreshing());
+        dispatch(fetchData()).finally(() => {
+          dispatch(stopRefreshing());
+        });
+        break;
+      case 'My Survey':
+        dispatch(startRefreshingProcessedSurvey());
+        dispatch(fetchProcessedData()).finally(() => {
+          dispatch(stopRefreshingProcessedSurvey());
+        });
+        break;
+      default:
+        break;
+    }
   };
 
   return (

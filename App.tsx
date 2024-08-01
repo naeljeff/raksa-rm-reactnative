@@ -1,8 +1,5 @@
 import {NavigationContainer} from '@react-navigation/native';
-import {
-  createNativeStackNavigator,
-  NativeStackNavigationProp,
-} from '@react-navigation/native-stack';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {PaperProvider} from 'react-native-paper';
 import React from 'react';
 
@@ -11,10 +8,13 @@ import store from './store';
 
 import LoginPage from './components/Layout/LoginPage';
 import MainPage from './components/Layout/MainPage';
+import MainFUAPage from './components/Layout/MainFUAPage';
+import { JobProps } from './props/JobProps';
 
 export type RootStackParamList = {
   login: undefined;
-  mainPage: {username: string; password: string};
+  mainPage: undefined;
+  formFUAIncoming: {item: JobProps};
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -28,10 +28,28 @@ const App = () => {
             initialRouteName="login"
             screenOptions={{
               headerShown: false,
-              gestureEnabled: false,
             }}>
-            <Stack.Screen name="login" component={LoginPage} />
-            <Stack.Screen name="mainPage" component={MainPage} />
+            <Stack.Screen
+              name="login"
+              component={LoginPage}
+              options={{
+                gestureEnabled: false,
+              }}
+            />
+            <Stack.Screen
+              name="mainPage"
+              component={MainPage}
+              options={{
+                gestureEnabled: false,
+              }}
+            />
+            <Stack.Screen
+              name="formFUAIncoming"
+              component={MainFUAPage}
+              options={{
+                gestureEnabled: true,
+              }}
+            />
           </Stack.Navigator>
         </NavigationContainer>
       </PaperProvider>
