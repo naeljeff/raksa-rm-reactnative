@@ -1,4 +1,4 @@
-import {View} from 'react-native';
+import {View, ActivityIndicator} from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
 import React, {useEffect, useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
@@ -6,10 +6,12 @@ import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
 import {
   fetchData,
+  selectData,
+  selectRefreshing,
   startRefreshing,
   stopRefreshing,
 } from '../../../store/slices/surveySlice';
-import {RootState, AppDispatch} from '../../../store';
+import {AppDispatch} from '../../../store';
 
 import SearchBarInput from '../SearchBar/SearchBarInput';
 import Information from '../Information';
@@ -21,8 +23,8 @@ const IncomingJobPage = () => {
   const [searchByTerm, setSearchByTerm] = useState<string>('');
 
   const dispatch = useDispatch<AppDispatch>();
-  const data = useSelector((state: RootState) => state.survey.data);
-  const refreshing = useSelector((state: RootState) => state.survey.refreshing);
+  const data = useSelector(selectData);
+  const refreshing = useSelector(selectRefreshing);
   const navigation =
     useNavigation<NativeStackNavigationProp<RootStackParamList, 'mainPage'>>();
 
@@ -39,7 +41,7 @@ const IncomingJobPage = () => {
   };
 
   return (
-    <View className="w-full h-full flex flex-1 flex-col">
+    <View className=" flex flex-1 flex-col">
       <SearchBarInput
         setSearchTerm={setSearchTerm}
         searchTab="IncomingJob"
@@ -49,14 +51,20 @@ const IncomingJobPage = () => {
       {/* Information */}
       <Information />
 
-      <JobList
-        data={data}
-        search={searchTerm}
-        searchByTerm={searchByTerm}
-        refreshing={refreshing}
-        onRefresh={handleRefresh}
-        navigation={navigation}
-      />
+      {refreshing && data.length === 0 ? (
+        <View className="w-full flex-1 bg-gray-100 inset-0 justify-center items-center">
+          <ActivityIndicator size="large" color="#ffbc3c" />
+        </View>
+      ) : (
+        <JobList
+          data={data}
+          search={searchTerm}
+          searchByTerm={searchByTerm}
+          refreshing={refreshing}
+          onRefresh={handleRefresh}
+          navigation={navigation}
+        />
+      )}
     </View>
   );
 };

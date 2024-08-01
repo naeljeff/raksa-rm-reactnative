@@ -1,7 +1,7 @@
 import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
 import {fetchSurveyData} from '../../services/api/survey/getSurveyData';
 import {RootState} from '..';
-import { JobProps } from '../../props/JobProps';
+import {JobProps} from '../../props/JobProps';
 
 interface SurveyState {
   data: JobProps[];
@@ -36,7 +36,6 @@ const surveySlice = createSlice({
     // Builder buat fetch data
     builder.addCase(fetchData.fulfilled, (state, action) => {
       // Simpen datanya dari payload ke state
-      // console.log('Reducer Action:', action.payload);
       state.data = action.payload;
       state.refreshing = false;
     });
@@ -54,5 +53,7 @@ const surveySlice = createSlice({
 });
 
 export const {startRefreshing, stopRefreshing} = surveySlice.actions;
+export const selectData = (state: RootState) => state.survey.data;
+export const selectRefreshing = (state: RootState) => state.survey.refreshing;
 export const getDataCount = (state: RootState) => state.survey.data.length;
 export default surveySlice.reducer;
