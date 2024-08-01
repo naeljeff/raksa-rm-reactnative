@@ -37,7 +37,7 @@ const Monitoring = ({item, index}: {item: MonitoringProps; index: number}) => {
               <Surface
                 className="justify-center items-center border bg-white border-black rounded px-2 py-0.5"
                 elevation={2}>
-                <TouchableOpacity onPress={() => console.log('press')}>
+                <TouchableOpacity onPress={() => console.log(`Pressed: ${item.nama}`)}>
                   <Text className="text-xs text-black tracking-tighter">
                     To Do List
                   </Text>

@@ -22,7 +22,7 @@ type MainFUAPageProps = {
 
 const MainFUAPage = ({route}: MainFUAPageProps) => {
   const {item} = route.params;
-  console.log(item)
+
   return (
     <View className="w-full h-full flex flex-col bg-[#ffffea]">
       {/* Header */}

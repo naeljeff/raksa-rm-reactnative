@@ -17,7 +17,6 @@ const initialState: SurveyState = {
 // Fetch the data dari api -> thunk middleware
 export const fetchData = createAsyncThunk('survey/fetchData', async () => {
   const response = await fetchSurveyData();
-  // console.log('Thunk Response:', response);
   return response.data;
 });
 
