@@ -1,12 +1,12 @@
 import React, {useState} from 'react';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Feather from 'react-native-vector-icons/Feather';
+import {Surface} from 'react-native-paper';
 import {View, TextInput, TouchableOpacity} from 'react-native';
 
 import SearchBy from './SearchBy';
 import SortBy from './SortBy';
 import OrderBy from './OrderBy';
-import {Surface} from 'react-native-paper';
 
 interface SearchBarInputProps {
   setSearchTerm: (text: string) => void;
@@ -21,7 +21,7 @@ const SearchBarInput = ({
   searchTab,
   setSearchByTerm,
   setSortBy,
-  setOrderBy
+  setOrderBy,
 }: SearchBarInputProps) => {
   const [localSearch, setLocalSearch] = useState<string>('');
   const [searchBy, setSearchBy] = useState<boolean>(false);
@@ -54,7 +54,6 @@ const SearchBarInput = ({
   const onSearchByChange = (selection: string) => {
     setSelected(selection);
     setSearchByTerm(selection);
-
   };
 
   const onSortByChange = (selection: string) => {

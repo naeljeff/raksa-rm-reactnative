@@ -46,6 +46,19 @@ const SearchBy = ({onSearchByChange, searchTab}: SearchProps) => {
           {name: 'Model', value: 'model'},
         ]);
         break;
+      case 'History':
+        setSearchByList([
+          {name: 'None', value: 'none'},
+          {name: 'No Pengajuan', value: 'noPengajuanSurvey'},
+          {name: 'Alamat Survey', value: 'alamat'},
+          {name: 'No Telepon', value: 'noTelp'},
+          {name: 'Merek', value: 'merek'},
+          {name: 'Tipe', value: 'tipe'},
+          {name: 'Model', value: 'model'},
+          {name: 'Jenis Asuransi', value: 'jenisAsuransi'},
+          {name: 'Plat Nomor', value: 'platNomor'},
+        ]);
+        break;
       default:
         setSearchByList([]);
         break;
@@ -53,6 +66,7 @@ const SearchBy = ({onSearchByChange, searchTab}: SearchProps) => {
   }, [searchTab]);
 
   const handleSearchBy = (option: {name: string; value: string}) => {
+    console.log('Selected option:', option);
     if (option.value === 'none') {
       setSelected(option.name);
       onSearchByChange('');
