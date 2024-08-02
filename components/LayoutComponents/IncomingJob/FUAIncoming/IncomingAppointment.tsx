@@ -35,7 +35,7 @@ const IncomingAppointment = ({
             <Text className="text-black capitalize">Register No</Text>
             <Text className="text-black capitalize">:</Text>
           </View>
-          <Text className="flex-1 text-black text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded">
+          <Text className="flex-1 text-gray-400 text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded">
             {noPengajuanSurvey}
           </Text>
         </View>
@@ -46,7 +46,7 @@ const IncomingAppointment = ({
             <Text className="text-black capitalize">Unit No</Text>
             <Text className="text-black capitalize">:</Text>
           </View>
-          <Text className="flex-1 text-black text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded">
+          <Text className="flex-1 text-gray-400 text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded">
             {unitNo}
           </Text>
         </View>
@@ -57,7 +57,7 @@ const IncomingAppointment = ({
             <Text className="text-black capitalize">Requested By</Text>
             <Text className="text-black capitalize">:</Text>
           </View>
-          <Text className="flex-1 text-black text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded">
+          <Text className="flex-1 text-gray-400 text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded">
             {emailRequest}
           </Text>
         </View>
@@ -68,7 +68,7 @@ const IncomingAppointment = ({
             <Text className="text-black capitalize">Requested Date</Text>
             <Text className="text-black capitalize">:</Text>
           </View>
-          <Text className="flex-1 text-black text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded">
+          <Text className="flex-1 text-gray-400 text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded">
             {formatDate(createdAt)}
           </Text>
         </View>
@@ -79,7 +79,7 @@ const IncomingAppointment = ({
             <Text className="text-black capitalize">Aging</Text>
             <Text className="text-black capitalize">:</Text>
           </View>
-          <Text className="flex-1 text-black text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded">
+          <Text className="flex-1 text-gray-400 text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded">
             {aging}
           </Text>
         </View>
@@ -90,7 +90,7 @@ const IncomingAppointment = ({
             <Text className="text-black capitalize">Priority</Text>
             <Text className="text-black capitalize">:</Text>
           </View>
-          <Text className="flex-1 text-black text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded">
+          <Text className="flex-1 text-gray-400 text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded">
             {priority}
           </Text>
         </View>
