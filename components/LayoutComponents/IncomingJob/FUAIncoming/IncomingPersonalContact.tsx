@@ -31,7 +31,7 @@ const IncomingPersonalContact = ({
             <Text className="text-black capitalize">Name</Text>
             <Text className="text-black capitalize">:</Text>
           </View>
-          <Text className=" flex-1 text-black text-xs uppercase py-1 px-2 border border-gray-200 bg-gray-100 rounded">
+          <Text className=" flex-1 text-black text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded">
             {nama}
           </Text>
         </View>
@@ -42,7 +42,7 @@ const IncomingPersonalContact = ({
             <Text className="text-black capitalize">Address</Text>
             <Text className="text-black capitalize">:</Text>
           </View>
-          <Text className="flex-1 text-black text-xs uppercase py-1 px-2 border border-gray-200 bg-gray-100 rounded">
+          <Text className="flex-1 text-black text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded">
             {alamat}
           </Text>
         </View>
@@ -53,7 +53,7 @@ const IncomingPersonalContact = ({
             <Text className="text-black capitalize">Phone Number</Text>
             <Text className="text-black capitalize">:</Text>
           </View>
-          <Text className="flex-1 text-black text-xs uppercase py-1 px-2 border border-gray-200 bg-gray-100 rounded">
+          <Text className="flex-1 text-black text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded">
             {noTelp}
           </Text>
         </View>
@@ -64,7 +64,7 @@ const IncomingPersonalContact = ({
             <Text className="text-black capitalize">Email</Text>
             <Text className="text-black capitalize">:</Text>
           </View>
-          <Text className="flex-1 text-black text-xs uppercase py-1 px-2 border border-gray-200 bg-gray-100 rounded">
+          <Text className="flex-1 text-black text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded">
             {email}
           </Text>
         </View>
@@ -75,7 +75,7 @@ const IncomingPersonalContact = ({
             <Text className="text-black capitalize">MKG Remarks</Text>
             <Text className="text-black capitalize">:</Text>
           </View>
-          <Text className="flex-1 text-black text-xs uppercase py-1 px-2 border border-gray-200 bg-gray-100 rounded">
+          <Text className="flex-1 text-black text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded">
             {catatan}
           </Text>
         </View>

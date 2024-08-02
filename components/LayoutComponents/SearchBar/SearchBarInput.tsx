@@ -67,7 +67,7 @@ const SearchBarInput = ({
   };
 
   return (
-    <View className="w-full h-[80px] bg-[#ffffea] flex flex-col justify-center items-start">
+    <View className="w-full h-[80px] bg-[#f7ebd7] flex flex-col justify-center items-start">
       {/* Search Area */}
       <View className="w-full p-1 mt-1 ml-0.5 pr-2 flex flex-row justify-between items-center">
         {/* Search Bar */}

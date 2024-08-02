@@ -26,7 +26,7 @@ const SortBy = ({onSortByChange}: SortProps) => {
   return (
     <Dropdown
       data={sortByList}
-      activeColor="#ffffea"
+      activeColor="#f7ebd7"
       maxHeight={300}
       labelField="name"
       valueField="value"

@@ -55,7 +55,7 @@ const Header = ({menuOption}: {menuOption: string}) => {
   };
 
   return (
-    <View className="w-full h-[45px] px-5 flex flex-row justify-between items-center bg-[#ffbc3c] ">
+    <View className="w-full h-[45px] px-5 flex flex-row justify-between items-center bg-[#f5af46] ">
       {/* Logout Button */}
       <Surface elevation={2} className="rounded-lg">
         <View className="py-1 px-2 bg-white rounded-lg">

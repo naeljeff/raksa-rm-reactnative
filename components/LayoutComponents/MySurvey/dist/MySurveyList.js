@@ -72,7 +72,7 @@ var MySurveyList = function (_a) {
         return (react_1["default"].createElement(Survey_1["default"], { item: item, index: index, navigation: navigation }));
     }, [navigation]);
     var getKey = react_1.useCallback(function (item, index) { return item.rowid + "-" + index; }, []);
-    return (react_1["default"].createElement(react_native_1.View, { className: "flex-1 w-full bg-[#ffffea]" }, filterProcessedData.length === 0 ? (react_1["default"].createElement(react_native_1.View, { className: "w-full h-full flex flex-col justify-center items-center" },
+    return (react_1["default"].createElement(react_native_1.View, { className: "flex-1 w-full bg-[#f7ebd7]" }, filterProcessedData.length === 0 ? (react_1["default"].createElement(react_native_1.View, { className: "w-full h-full flex flex-col justify-center items-center" },
         react_1["default"].createElement(MaterialIcons_1["default"], { name: "do-not-disturb-alt", size: 80, color: "black" }),
         react_1["default"].createElement(react_native_1.Text, { className: "italic text-gray-600 capitalize text-xl" }, "No Survey Found"))) : (react_1["default"].createElement(react_native_1.FlatList, { data: paginatedData, renderItem: renderItem, keyExtractor: getKey, refreshControl: react_1["default"].createElement(react_native_1.RefreshControl, { refreshing: refreshing, onRefresh: onRefresh }), onEndReached: handleLoadMore, onEndReachedThreshold: 0.5, initialNumToRender: pageSize, maxToRenderPerBatch: pageSize, windowSize: 11, removeClippedSubviews: true }))));
 };

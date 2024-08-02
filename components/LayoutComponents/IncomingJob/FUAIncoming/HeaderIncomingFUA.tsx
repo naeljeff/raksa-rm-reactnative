@@ -6,7 +6,7 @@ import React from 'react';
 const HeaderIncomingFUA = () => {
   const navigation = useNavigation();
   return (
-    <View className="w-full h-[45px] px-1 flex flex-row justify-between items-center bg-[#ffbc3c] ">
+    <View className="w-full h-[45px] px-1 flex flex-row justify-between items-center bg-[#f5af46] ">
       {/* Back Button */}
       <View>
         <TouchableOpacity

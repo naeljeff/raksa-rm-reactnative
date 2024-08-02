@@ -26,7 +26,7 @@ var SearchBarHistory = function (_a) {
         setSearchBy(true);
         setSearchTerm(text);
     };
-    return (react_1["default"].createElement(react_native_1.View, { className: "w-full h-[80px] bg-[#ffffea] flex flex-col justify-center items-start" },
+    return (react_1["default"].createElement(react_native_1.View, { className: "w-full h-[80px] bg-[#f7ebd7] flex flex-col justify-center items-start" },
         react_1["default"].createElement(react_native_1.View, { className: "w-full p-1 mt-1 ml-0.5 pr-2 flex flex-row justify-between items-center" },
             react_1["default"].createElement(react_native_1.View, { className: "w-full flex flex-row items-center justify-start my-1" },
                 react_1["default"].createElement(react_native_1.View, { className: "w-full h-[30px] px-3 flex flex-row justify-start items-center border border-black rounded-lg bg-white" },

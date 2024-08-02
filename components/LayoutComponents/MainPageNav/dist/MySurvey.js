@@ -29,7 +29,7 @@ var MySurvey = function () {
     return (react_1["default"].createElement(react_native_1.View, { className: "flex-1 flex flex-col" },
         react_1["default"].createElement(SearchBarInput_1["default"], { setSearchTerm: setSearchTerm, searchTab: "MySurvey", setSearchByTerm: setSearchByTerm, setSortBy: setSortBy, setOrderBy: setOrderBy }),
         react_1["default"].createElement(Information_1["default"], null),
-        processedRefreshing && processedData.length === 0 ? (react_1["default"].createElement(react_native_1.View, { className: "w-full flex-1 bg-[#ffffea] inset-0 justify-center items-center" },
-            react_1["default"].createElement(react_native_1.ActivityIndicator, { size: "large", color: "#ffbc3c" }))) : (react_1["default"].createElement(MySurveyList_1["default"], { data: processedData, search: searchTerm, searchByTerm: searchByTerm, refreshing: processedRefreshing, onRefresh: handleProcessedRefresh, navigation: navigation, sortBy: sortBy, orderBy: orderBy }))));
+        processedRefreshing && processedData.length === 0 ? (react_1["default"].createElement(react_native_1.View, { className: "w-full flex-1 bg-[#f7ebd7] inset-0 justify-center items-center" },
+            react_1["default"].createElement(react_native_1.ActivityIndicator, { size: "large", color: "#f5af46" }))) : (react_1["default"].createElement(MySurveyList_1["default"], { data: processedData, search: searchTerm, searchByTerm: searchByTerm, refreshing: processedRefreshing, onRefresh: handleProcessedRefresh, navigation: navigation, sortBy: sortBy, orderBy: orderBy }))));
 };
 exports["default"] = MySurvey;

@@ -30,7 +30,7 @@ var IncomingJobPage = function () {
     return (react_1["default"].createElement(react_native_1.View, { className: "flex flex-1 flex-col" },
         react_1["default"].createElement(SearchBarInput_1["default"], { setSearchTerm: setSearchTerm, searchTab: "IncomingJob", setSearchByTerm: setSearchByTerm, setSortBy: setSortBy, setOrderBy: setOrderBy }),
         react_1["default"].createElement(Information_1["default"], null),
-        refreshing && data.length === 0 ? (react_1["default"].createElement(react_native_1.View, { className: "w-full flex-1 bg-[#ffffea] inset-0 justify-center items-center" },
-            react_1["default"].createElement(react_native_1.ActivityIndicator, { size: "large", color: "#ffbc3c" }))) : (react_1["default"].createElement(JobList_1["default"], { data: data, search: searchTerm, searchByTerm: searchByTerm, refreshing: refreshing, onRefresh: handleRefresh, navigation: navigation, sortBy: sortBy, orderBy: orderBy }))));
+        refreshing && data.length === 0 ? (react_1["default"].createElement(react_native_1.View, { className: "w-full flex-1 bg-[#f7ebd7] inset-0 justify-center items-center" },
+            react_1["default"].createElement(react_native_1.ActivityIndicator, { size: "large", color: "#f5af46" }))) : (react_1["default"].createElement(JobList_1["default"], { data: data, search: searchTerm, searchByTerm: searchByTerm, refreshing: refreshing, onRefresh: handleRefresh, navigation: navigation, sortBy: sortBy, orderBy: orderBy }))));
 };
 exports["default"] = IncomingJobPage;

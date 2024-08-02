@@ -61,7 +61,6 @@ var SearchBy = function (_a) {
         }
     }, [searchTab]);
     var handleSearchBy = function (option) {
-        console.log('Selected option:', option);
         if (option.value === 'none') {
             setSelected(option.name);
             onSearchByChange('');
@@ -72,6 +71,6 @@ var SearchBy = function (_a) {
         }
     };
     return (react_1["default"].createElement(react_native_1.View, { className: "w-[33%] mt-4 ml-3" },
-        react_1["default"].createElement(react_native_element_dropdown_1.Dropdown, { data: searchByList, search: true, activeColor: "#ffffea", maxHeight: 300, labelField: "name", valueField: "value", placeholder: "Search By", searchPlaceholder: "Search By", value: selected, selectedTextStyle: { fontSize: 12, color: 'black' }, itemTextStyle: { fontSize: 12, color: 'black' }, inputSearchStyle: { fontSize: 12, color: 'black' }, placeholderStyle: { fontSize: 12, color: 'black' }, style: { paddingHorizontal: 4 }, onChange: function (option) { return handleSearchBy(option); } })));
+        react_1["default"].createElement(react_native_element_dropdown_1.Dropdown, { data: searchByList, search: true, activeColor: "#f7ebd7", maxHeight: 300, labelField: "name", valueField: "value", placeholder: "Search By", searchPlaceholder: "Search By", value: selected, selectedTextStyle: { fontSize: 12, color: 'black' }, itemTextStyle: { fontSize: 12, color: 'black' }, inputSearchStyle: { fontSize: 12, color: 'black' }, placeholderStyle: { fontSize: 12, color: 'black' }, style: { paddingHorizontal: 4 }, onChange: function (option) { return handleSearchBy(option); } })));
 };
 exports["default"] = SearchBy;

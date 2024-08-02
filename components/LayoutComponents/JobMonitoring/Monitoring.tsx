@@ -3,16 +3,24 @@ import Ionicon from 'react-native-vector-icons/Ionicons';
 import {Badge, Surface} from 'react-native-paper';
 import {ListItem} from '@rneui/themed';
 import React, {useState} from 'react';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
 import {MonitoringProps} from '../../../props/MonitoringProps';
-import { JobProps } from '../../../props/JobProps';
+import {JobProps} from '../../../props/JobProps';
 import MonitoringSubList from './MonitoringSubList';
+import {RootStackParamList} from '../../../App';
 
-const Monitoring = ({item, index}: {item: MonitoringProps; index: number}) => {
+interface MonitoringPageProps {
+  item: MonitoringProps;
+  index: number;
+  navigation: NativeStackNavigationProp<RootStackParamList, 'mainPage'>;
+}
+
+const Monitoring = ({item, index, navigation}: MonitoringPageProps) => {
   const [expanded, setExpanded] = useState<boolean>(false);
   const handlePress = () => {
     setExpanded(!expanded);
-    console.log(item.nama);
+    console.log();
   };
   const testList = [
     {
@@ -145,8 +153,8 @@ const Monitoring = ({item, index}: {item: MonitoringProps; index: number}) => {
   return (
     <ListItem.Accordion
       content={
-        <ListItem.Content className="bg-[#ffffea]">
-          <View className="w-screen flex-row justify-between items-center py-6 pr-10 pl-6 border-b border-black bg-[#ffffea]">
+        <ListItem.Content className="bg-[#f7ebd7]">
+          <View className="w-screen flex-row justify-between items-center py-6 pr-10 pl-6 border-b border-black bg-[#f7ebd7]">
             <Text className="flex-[0.5] text-lg text-black font-semibold">
               {item.nama}
             </Text>
@@ -182,20 +190,25 @@ const Monitoring = ({item, index}: {item: MonitoringProps; index: number}) => {
         console.log(item.nama);
       }}
       containerStyle={{
-        backgroundColor: '#ffffea',
+        backgroundColor: '#f7ebd7',
         padding: 0,
         paddingRight: 10,
       }}>
-      {testList.map((l, i) => (
-        <View key={i}>
+      {testList.map((item, index) => (
+        <View key={index}>
           <ListItem
+            onPress={() => console.log('keluar')}
             containerStyle={{
               backgroundColor: 'rgba(255, 188, 60, 0.3)',
               paddingLeft: 0,
               paddingRight: 0,
             }}>
             <ListItem.Content>
-              <MonitoringSubList item={l}/>
+              <MonitoringSubList
+                item={item}
+                index={index}
+                navigation={navigation}
+              />
             </ListItem.Content>
           </ListItem>
           <View className="w-screen border-b border-black" />

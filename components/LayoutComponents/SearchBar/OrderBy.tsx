@@ -20,7 +20,7 @@ const OrderBy = ({onOrderByChange}: OrderProps) => {
   return (
     <Dropdown
       data={orderList}
-      activeColor="#ffffea"
+      activeColor="#f7ebd7"
       maxHeight={200}
       labelField="name"
       valueField="value"

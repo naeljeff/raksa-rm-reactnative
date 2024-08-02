@@ -1,17 +1,32 @@
 import {Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 import Icon from 'react-native-vector-icons/Ionicons';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
 import {JobProps} from '../../../props/JobProps';
 import {Badge, Surface} from 'react-native-paper';
 import {calcAgingDate, formatDate} from '../../../utilities/function';
+import { RootStackParamList } from '../../../App';
 
-const MonitoringSubList = ({item}: {item: JobProps}) => {
+interface MonitoringSubListProps {
+  item: JobProps;
+  index: number;
+  navigation: NativeStackNavigationProp<RootStackParamList, 'mainPage'>;
+}
+
+const MonitoringSubList = ({item, index, navigation}: MonitoringSubListProps) => {
   const dayDiff = calcAgingDate(item.createdAt);
   const formattedDate = formatDate(item.createdAt);
+
+  const handleMonitoringSubListPress = () => {
+    console.log(`Index: ${index} | Item: ${item.noPengajuanSurvey}`)
+    navigation.navigate('formFUAIncoming', {
+      item: item,
+    });
+  }
   return (
     <TouchableOpacity
-      onPress={() => console.log(item.noPengajuanSurvey)}
+      onPress={handleMonitoringSubListPress}
       className="w-screen flex flex-row justify-start items-center">
       {/* Icon Mail */}
       <View className="flex-[0.1] flex items-center justify-center ">

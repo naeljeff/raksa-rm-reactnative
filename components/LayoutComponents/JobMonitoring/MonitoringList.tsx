@@ -7,10 +7,18 @@ import {RootStackParamList} from '../../../App';
 import Monitoring from './Monitoring';
 import {MonitoringProps} from '../../../props/MonitoringProps';
 
-const MonitoringList = () => {
+interface MonitoringListProps {
+  // data
+  search: string;
+  searchByTerm: string;
+  sortBy: string;
+  orderBy: string;
+  navigation: NativeStackNavigationProp<RootStackParamList, 'mainPage'>;
+}
+
+const MonitoringList = ({search, searchByTerm, sortBy, orderBy, navigation}: MonitoringListProps) => {
   const [page, setPage] = useState<number>(1);
   const [loadMore, setLoadMore] = useState<boolean>(false);
-  
 
   const tempData: MonitoringProps[] = [
     {
@@ -92,15 +100,15 @@ const MonitoringList = () => {
 
   const renderItem = useCallback(
     ({item, index}: {item: MonitoringProps; index: number}) => (
-      <Monitoring item={item} index={index} />
+      <Monitoring item={item} index={index} navigation={navigation}/>
     ),
-    [],
+    [navigation],
   );
 
   const getKey = useCallback((item: MonitoringProps) => item.id.toString(), []);
 
   return (
-    <View className="flex-1 w-full bg-[#ffffea]">
+    <View className="flex-1 w-full bg-[#f7ebd7]">
       {tempData.length === 0 ? (
         <View className="w-full h-full flex flex-col justify-center items-center">
           <MIcon name="do-not-disturb-alt" size={80} color="black" />

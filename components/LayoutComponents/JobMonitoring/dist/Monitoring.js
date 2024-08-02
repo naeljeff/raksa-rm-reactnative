@@ -7,11 +7,11 @@ var themed_1 = require("@rneui/themed");
 var react_1 = require("react");
 var MonitoringSubList_1 = require("./MonitoringSubList");
 var Monitoring = function (_a) {
-    var item = _a.item, index = _a.index;
+    var item = _a.item, index = _a.index, navigation = _a.navigation;
     var _b = react_1.useState(false), expanded = _b[0], setExpanded = _b[1];
     var handlePress = function () {
         setExpanded(!expanded);
-        console.log(item.nama);
+        console.log();
     };
     var testList = [
         {
@@ -140,8 +140,8 @@ var Monitoring = function (_a) {
             perluasan: ['BENGKEL RESMI', 'KECELAKAAN DIRI PENUMPANG']
         },
     ];
-    return (react_1["default"].createElement(themed_1.ListItem.Accordion, { content: react_1["default"].createElement(themed_1.ListItem.Content, { className: "bg-[#ffffea]" },
-            react_1["default"].createElement(react_native_1.View, { className: "w-screen flex-row justify-between items-center py-6 pr-10 pl-6 border-b border-black bg-[#ffffea]" },
+    return (react_1["default"].createElement(themed_1.ListItem.Accordion, { content: react_1["default"].createElement(themed_1.ListItem.Content, { className: "bg-[#f7ebd7]" },
+            react_1["default"].createElement(react_native_1.View, { className: "w-screen flex-row justify-between items-center py-6 pr-10 pl-6 border-b border-black bg-[#f7ebd7]" },
                 react_1["default"].createElement(react_native_1.Text, { className: "flex-[0.5] text-lg text-black font-semibold" }, item.nama),
                 react_1["default"].createElement(react_native_1.View, { className: "flex-[0.5] flex-row justify-end items-center" },
                     react_1["default"].createElement(react_native_paper_1.Surface, { className: "justify-center items-center border bg-white border-black rounded px-2 py-0.5", elevation: 2 },
@@ -153,17 +153,17 @@ var Monitoring = function (_a) {
             setExpanded(!expanded);
             console.log(item.nama);
         }, containerStyle: {
-            backgroundColor: '#ffffea',
+            backgroundColor: '#f7ebd7',
             padding: 0,
             paddingRight: 10
-        } }, testList.map(function (l, i) { return (react_1["default"].createElement(react_native_1.View, { key: i },
-        react_1["default"].createElement(themed_1.ListItem, { containerStyle: {
+        } }, testList.map(function (item, index) { return (react_1["default"].createElement(react_native_1.View, { key: index },
+        react_1["default"].createElement(themed_1.ListItem, { onPress: function () { return console.log('keluar'); }, containerStyle: {
                 backgroundColor: 'rgba(255, 188, 60, 0.3)',
                 paddingLeft: 0,
                 paddingRight: 0
             } },
             react_1["default"].createElement(themed_1.ListItem.Content, null,
-                react_1["default"].createElement(MonitoringSubList_1["default"], { item: l }))),
+                react_1["default"].createElement(MonitoringSubList_1["default"], { item: item, index: index, navigation: navigation }))),
         react_1["default"].createElement(react_native_1.View, { className: "w-screen border-b border-black" }))); })));
 };
 exports["default"] = Monitoring;

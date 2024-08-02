@@ -66,7 +66,7 @@ const SearchBy = ({onSearchByChange, searchTab}: SearchProps) => {
   }, [searchTab]);
 
   const handleSearchBy = (option: {name: string; value: string}) => {
-    console.log('Selected option:', option);
+
     if (option.value === 'none') {
       setSelected(option.name);
       onSearchByChange('');
@@ -80,7 +80,7 @@ const SearchBy = ({onSearchByChange, searchTab}: SearchProps) => {
       <Dropdown
         data={searchByList}
         search
-        activeColor="#ffffea"
+        activeColor="#f7ebd7"
         maxHeight={300}
         labelField="name"
         valueField="value"

@@ -4,9 +4,10 @@ var react_native_1 = require("react-native");
 var react_1 = require("react");
 var MaterialIcons_1 = require("react-native-vector-icons/MaterialIcons");
 var Monitoring_1 = require("./Monitoring");
-var MonitoringList = function () {
-    var _a = react_1.useState(1), page = _a[0], setPage = _a[1];
-    var _b = react_1.useState(false), loadMore = _b[0], setLoadMore = _b[1];
+var MonitoringList = function (_a) {
+    var search = _a.search, searchByTerm = _a.searchByTerm, sortBy = _a.sortBy, orderBy = _a.orderBy, navigation = _a.navigation;
+    var _b = react_1.useState(1), page = _b[0], setPage = _b[1];
+    var _c = react_1.useState(false), loadMore = _c[0], setLoadMore = _c[1];
     var tempData = [
         {
             id: 1,
@@ -86,10 +87,10 @@ var MonitoringList = function () {
     ];
     var renderItem = react_1.useCallback(function (_a) {
         var item = _a.item, index = _a.index;
-        return (react_1["default"].createElement(Monitoring_1["default"], { item: item, index: index }));
-    }, []);
+        return (react_1["default"].createElement(Monitoring_1["default"], { item: item, index: index, navigation: navigation }));
+    }, [navigation]);
     var getKey = react_1.useCallback(function (item) { return item.id.toString(); }, []);
-    return (react_1["default"].createElement(react_native_1.View, { className: "flex-1 w-full bg-[#ffffea]" }, tempData.length === 0 ? (react_1["default"].createElement(react_native_1.View, { className: "w-full h-full flex flex-col justify-center items-center" },
+    return (react_1["default"].createElement(react_native_1.View, { className: "flex-1 w-full bg-[#f7ebd7]" }, tempData.length === 0 ? (react_1["default"].createElement(react_native_1.View, { className: "w-full h-full flex flex-col justify-center items-center" },
         react_1["default"].createElement(MaterialIcons_1["default"], { name: "do-not-disturb-alt", size: 80, color: "black" }),
         react_1["default"].createElement(react_native_1.Text, { className: "italic text-gray-600 capitalize text-xl" }, "No Data Found"))) : (react_1["default"].createElement(react_native_1.FlatList, { data: tempData, keyExtractor: getKey, renderItem: renderItem }))));
 };
