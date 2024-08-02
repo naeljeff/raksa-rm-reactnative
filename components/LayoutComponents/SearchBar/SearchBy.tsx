@@ -80,7 +80,7 @@ const SearchBy = ({onSearchByChange, searchTab}: SearchProps) => {
       <Dropdown
         data={searchByList}
         search
-        activeColor="#ffffea"
+        activeColor="#f7ebd7"
         maxHeight={300}
         labelField="name"
         valueField="value"

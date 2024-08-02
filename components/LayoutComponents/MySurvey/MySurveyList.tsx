@@ -6,7 +6,7 @@ import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {RootStackParamList} from '../../../App';
 import {JobProps} from '../../../props/JobProps';
 import Survey from './Survey';
-import { calcAgingDate } from '../../../utilities/function';
+import {calcAgingDate} from '../../../utilities/function';
 
 interface ProcessedSurveyList {
   data: JobProps[];
@@ -27,7 +27,7 @@ const MySurveyList = ({
   searchByTerm,
   navigation,
   sortBy,
-  orderBy
+  orderBy,
 }: ProcessedSurveyList) => {
   const [page, setPage] = useState<number>(1);
   const [loadMore, setLoadMore] = useState<boolean>(false);
@@ -102,7 +102,7 @@ const MySurveyList = ({
   );
 
   return (
-    <View className="flex-1 w-full bg-[#ffffea]">
+    <View className="flex-1 w-full bg-[#f7ebd7]">
       {filterProcessedData.length === 0 ? (
         <View className="w-full h-full flex flex-col justify-center items-center">
           <MIcon name="do-not-disturb-alt" size={80} color="black" />

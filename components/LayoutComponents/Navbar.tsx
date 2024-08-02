@@ -30,7 +30,7 @@ const Navbar = ({onMenuChange}: NavbarProps) => {
   return (
     <View className="w-full h-[50px]">
       <LinearGradient
-        colors={['#fff', '#ffbc3c', '#ffbc3c', '#ffbc3c', '#ffa008']}
+        colors={['#fff', '#f5af46', '#f5af46', '#f5af46', '#ffa008']}
         className="h-full flex justify-center">
         {/* Menu */}
         <View className="w-full flex flex-row justify-center gap-x-2">

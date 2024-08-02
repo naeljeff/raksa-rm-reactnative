@@ -5,7 +5,7 @@ import {ListItem} from '@rneui/themed';
 import React, {useState} from 'react';
 
 import {MonitoringProps} from '../../../props/MonitoringProps';
-import { JobProps } from '../../../props/JobProps';
+import {JobProps} from '../../../props/JobProps';
 import MonitoringSubList from './MonitoringSubList';
 
 const Monitoring = ({item, index}: {item: MonitoringProps; index: number}) => {
@@ -145,8 +145,8 @@ const Monitoring = ({item, index}: {item: MonitoringProps; index: number}) => {
   return (
     <ListItem.Accordion
       content={
-        <ListItem.Content className="bg-[#ffffea]">
-          <View className="w-screen flex-row justify-between items-center py-6 pr-10 pl-6 border-b border-black bg-[#ffffea]">
+        <ListItem.Content className="bg-[#f7ebd7]">
+          <View className="w-screen flex-row justify-between items-center py-6 pr-10 pl-6 border-b border-black bg-[#f7ebd7]">
             <Text className="flex-[0.5] text-lg text-black font-semibold">
               {item.nama}
             </Text>
@@ -182,7 +182,7 @@ const Monitoring = ({item, index}: {item: MonitoringProps; index: number}) => {
         console.log(item.nama);
       }}
       containerStyle={{
-        backgroundColor: '#ffffea',
+        backgroundColor: '#f7ebd7',
         padding: 0,
         paddingRight: 10,
       }}>
@@ -195,7 +195,7 @@ const Monitoring = ({item, index}: {item: MonitoringProps; index: number}) => {
               paddingRight: 0,
             }}>
             <ListItem.Content>
-              <MonitoringSubList item={l}/>
+              <MonitoringSubList item={l} />
             </ListItem.Content>
           </ListItem>
           <View className="w-screen border-b border-black" />

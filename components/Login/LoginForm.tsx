@@ -7,7 +7,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import React, {useEffect, useReducer, useState} from 'react';
 
 import {RootStackParamList} from '../../App';
-import { AppDispatch } from '../../store';
+import {AppDispatch} from '../../store';
 import {
   getUserLoginData,
   selectUserLoading,
@@ -146,7 +146,7 @@ const LoginForm = ({navigation}: LoginFormProps) => {
               <Button
                 mode="contained-tonal"
                 className="w-[60%]"
-                buttonColor="#ffffea"
+                buttonColor="#f7ebd7"
                 style={{
                   borderWidth: 1,
                   borderColor: '#64748b',

@@ -1,8 +1,8 @@
-import { TouchableOpacity, View, TextInput  } from 'react-native'
+import {TouchableOpacity, View, TextInput} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Feather from 'react-native-vector-icons/Feather';
-import React, {useState} from 'react'
-import { Surface} from 'react-native-paper';
+import React, {useState} from 'react';
+import {Surface} from 'react-native-paper';
 import SearchBy from './SearchBy';
 
 interface SearchBarInputProps {
@@ -11,7 +11,11 @@ interface SearchBarInputProps {
   searchTab: string;
 }
 
-const SearchBarHistory = ({setSearchTerm, setSearchByTerm, searchTab} : SearchBarInputProps) => {
+const SearchBarHistory = ({
+  setSearchTerm,
+  setSearchByTerm,
+  searchTab,
+}: SearchBarInputProps) => {
   const [localSearch, setLocalSearch] = useState<string>('');
   const [searchBy, setSearchBy] = useState<boolean>(false);
   const [sortOrder, setSortOrder] = useState<string>('');
@@ -35,7 +39,7 @@ const SearchBarHistory = ({setSearchTerm, setSearchByTerm, searchTab} : SearchBa
   };
 
   return (
-    <View className="w-full h-[80px] bg-[#ffffea] flex flex-col justify-center items-start">
+    <View className="w-full h-[80px] bg-[#f7ebd7] flex flex-col justify-center items-start">
       {/* Search Area */}
       <View className="w-full p-1 mt-1 ml-0.5 pr-2 flex flex-row justify-between items-center">
         {/* Search Bar */}
@@ -102,7 +106,7 @@ const SearchBarHistory = ({setSearchTerm, setSearchByTerm, searchTab} : SearchBa
         </View>
       </View>
     </View>
-  )
-}
+  );
+};
 
-export default SearchBarHistory
+export default SearchBarHistory;

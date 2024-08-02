@@ -19,7 +19,7 @@ const History = () => {
       <Information />
 
       {/* History */}
-      <HistoryList />
+      {/* <HistoryList /> */}
     </View>
   );
 };

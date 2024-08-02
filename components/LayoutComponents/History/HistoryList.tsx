@@ -4,7 +4,7 @@ import React from 'react';
 
 const HistoryList = () => {
   return (
-    <View className="flex-1 w-full bg-[#ffffea]">
+    <View className="flex-1 w-full bg-[#f7ebd7]">
       <View className="w-full h-full flex flex-col justify-center items-center">
         <MIcon name="do-not-disturb-alt" size={80} color="black" />
         <Text className="italic text-gray-600 capitalize text-xl">

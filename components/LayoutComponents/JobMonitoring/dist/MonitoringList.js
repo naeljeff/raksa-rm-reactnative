@@ -89,7 +89,7 @@ var MonitoringList = function () {
         return (react_1["default"].createElement(Monitoring_1["default"], { item: item, index: index }));
     }, []);
     var getKey = react_1.useCallback(function (item) { return item.id.toString(); }, []);
-    return (react_1["default"].createElement(react_native_1.View, { className: "flex-1 w-full bg-[#ffffea]" }, tempData.length === 0 ? (react_1["default"].createElement(react_native_1.View, { className: "w-full h-full flex flex-col justify-center items-center" },
+    return (react_1["default"].createElement(react_native_1.View, { className: "flex-1 w-full bg-[#f7ebd7]" }, tempData.length === 0 ? (react_1["default"].createElement(react_native_1.View, { className: "w-full h-full flex flex-col justify-center items-center" },
         react_1["default"].createElement(MaterialIcons_1["default"], { name: "do-not-disturb-alt", size: 80, color: "black" }),
         react_1["default"].createElement(react_native_1.Text, { className: "italic text-gray-600 capitalize text-xl" }, "No Data Found"))) : (react_1["default"].createElement(react_native_1.FlatList, { data: tempData, keyExtractor: getKey, renderItem: renderItem }))));
 };

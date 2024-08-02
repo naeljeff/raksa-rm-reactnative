@@ -140,8 +140,8 @@ var Monitoring = function (_a) {
             perluasan: ['BENGKEL RESMI', 'KECELAKAAN DIRI PENUMPANG']
         },
     ];
-    return (react_1["default"].createElement(themed_1.ListItem.Accordion, { content: react_1["default"].createElement(themed_1.ListItem.Content, { className: "bg-[#ffffea]" },
-            react_1["default"].createElement(react_native_1.View, { className: "w-screen flex-row justify-between items-center py-6 pr-10 pl-6 border-b border-black bg-[#ffffea]" },
+    return (react_1["default"].createElement(themed_1.ListItem.Accordion, { content: react_1["default"].createElement(themed_1.ListItem.Content, { className: "bg-[#f7ebd7]" },
+            react_1["default"].createElement(react_native_1.View, { className: "w-screen flex-row justify-between items-center py-6 pr-10 pl-6 border-b border-black bg-[#f7ebd7]" },
                 react_1["default"].createElement(react_native_1.Text, { className: "flex-[0.5] text-lg text-black font-semibold" }, item.nama),
                 react_1["default"].createElement(react_native_1.View, { className: "flex-[0.5] flex-row justify-end items-center" },
                     react_1["default"].createElement(react_native_paper_1.Surface, { className: "justify-center items-center border bg-white border-black rounded px-2 py-0.5", elevation: 2 },
@@ -153,7 +153,7 @@ var Monitoring = function (_a) {
             setExpanded(!expanded);
             console.log(item.nama);
         }, containerStyle: {
-            backgroundColor: '#ffffea',
+            backgroundColor: '#f7ebd7',
             padding: 0,
             paddingRight: 10
         } }, testList.map(function (l, i) { return (react_1["default"].createElement(react_native_1.View, { key: i },
