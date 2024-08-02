@@ -66,7 +66,7 @@ const SearchBy = ({onSearchByChange, searchTab}: SearchProps) => {
   }, [searchTab]);
 
   const handleSearchBy = (option: {name: string; value: string}) => {
-    console.log('Selected option:', option);
+
     if (option.value === 'none') {
       setSelected(option.name);
       onSearchByChange('');

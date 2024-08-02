@@ -17,7 +17,7 @@ const IncomingFUA = () => {
             <Text className="text-black capitalize">Contact Date</Text>
             <Text className="text-black capitalize">:</Text>
           </View>
-          <Text className="flex-1 text-black text-xs uppercase py-1 px-2 border border-gray-200 bg-gray-100 rounded">
+          <Text className="flex-1 text-black text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded">
             ABC123
           </Text>
         </View>
@@ -28,7 +28,7 @@ const IncomingFUA = () => {
             <Text className="text-black capitalize">Appointment Date</Text>
             <Text className="text-black capitalize">:</Text>
           </View>
-          <Text className="flex-1 text-black text-xs uppercase py-1 px-2 border border-gray-200 bg-gray-100 rounded">
+          <Text className="flex-1 text-black text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded">
             ABC123
           </Text>
         </View>
@@ -39,7 +39,7 @@ const IncomingFUA = () => {
             <Text className="text-black capitalize">Address</Text>
             <Text className="text-black capitalize">:</Text>
           </View>
-          <Text className="flex-1 text-black text-xs uppercase py-1 px-2 border border-gray-200 bg-gray-100 rounded">
+          <Text className="flex-1 text-black text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded">
             ABC123
           </Text>
         </View>
@@ -50,7 +50,7 @@ const IncomingFUA = () => {
             <Text className="text-black capitalize">Status</Text>
             <Text className="text-black capitalize">:</Text>
           </View>
-          <Text className="flex-1 text-black text-xs uppercase py-1 px-2 border border-gray-200 bg-gray-100 rounded">
+          <Text className="flex-1 text-black text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded">
             ABC123
           </Text>
         </View>
@@ -61,7 +61,7 @@ const IncomingFUA = () => {
             <Text className="text-black capitalize">Remarks</Text>
             <Text className="text-black capitalize">:</Text>
           </View>
-          <Text className="flex-1 text-black text-xs uppercase py-1 px-2 border border-gray-200 bg-gray-100 rounded">
+          <Text className="flex-1 text-black text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded">
             ABC123
           </Text>
         </View>

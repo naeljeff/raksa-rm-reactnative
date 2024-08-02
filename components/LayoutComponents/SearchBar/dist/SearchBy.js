@@ -61,7 +61,6 @@ var SearchBy = function (_a) {
         }
     }, [searchTab]);
     var handleSearchBy = function (option) {
-        console.log('Selected option:', option);
         if (option.value === 'none') {
             setSelected(option.name);
             onSearchByChange('');

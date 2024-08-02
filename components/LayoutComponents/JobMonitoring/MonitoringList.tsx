@@ -7,7 +7,16 @@ import {RootStackParamList} from '../../../App';
 import Monitoring from './Monitoring';
 import {MonitoringProps} from '../../../props/MonitoringProps';
 
-const MonitoringList = () => {
+interface MonitoringListProps {
+  // data
+  search: string;
+  searchByTerm: string;
+  sortBy: string;
+  orderBy: string;
+  navigation: NativeStackNavigationProp<RootStackParamList, 'mainPage'>;
+}
+
+const MonitoringList = ({search, searchByTerm, sortBy, orderBy, navigation}: MonitoringListProps) => {
   const [page, setPage] = useState<number>(1);
   const [loadMore, setLoadMore] = useState<boolean>(false);
 
@@ -91,9 +100,9 @@ const MonitoringList = () => {
 
   const renderItem = useCallback(
     ({item, index}: {item: MonitoringProps; index: number}) => (
-      <Monitoring item={item} index={index} />
+      <Monitoring item={item} index={index} navigation={navigation}/>
     ),
-    [],
+    [navigation],
   );
 
   const getKey = useCallback((item: MonitoringProps) => item.id.toString(), []);

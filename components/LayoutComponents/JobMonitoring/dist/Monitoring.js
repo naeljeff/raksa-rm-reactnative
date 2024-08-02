@@ -7,11 +7,11 @@ var themed_1 = require("@rneui/themed");
 var react_1 = require("react");
 var MonitoringSubList_1 = require("./MonitoringSubList");
 var Monitoring = function (_a) {
-    var item = _a.item, index = _a.index;
+    var item = _a.item, index = _a.index, navigation = _a.navigation;
     var _b = react_1.useState(false), expanded = _b[0], setExpanded = _b[1];
     var handlePress = function () {
         setExpanded(!expanded);
-        console.log(item.nama);
+        console.log();
     };
     var testList = [
         {
@@ -156,14 +156,14 @@ var Monitoring = function (_a) {
             backgroundColor: '#f7ebd7',
             padding: 0,
             paddingRight: 10
-        } }, testList.map(function (l, i) { return (react_1["default"].createElement(react_native_1.View, { key: i },
-        react_1["default"].createElement(themed_1.ListItem, { containerStyle: {
+        } }, testList.map(function (item, index) { return (react_1["default"].createElement(react_native_1.View, { key: index },
+        react_1["default"].createElement(themed_1.ListItem, { onPress: function () { return console.log('keluar'); }, containerStyle: {
                 backgroundColor: 'rgba(255, 188, 60, 0.3)',
                 paddingLeft: 0,
                 paddingRight: 0
             } },
             react_1["default"].createElement(themed_1.ListItem.Content, null,
-                react_1["default"].createElement(MonitoringSubList_1["default"], { item: l }))),
+                react_1["default"].createElement(MonitoringSubList_1["default"], { item: item, index: index, navigation: navigation }))),
         react_1["default"].createElement(react_native_1.View, { className: "w-screen border-b border-black" }))); })));
 };
 exports["default"] = Monitoring;

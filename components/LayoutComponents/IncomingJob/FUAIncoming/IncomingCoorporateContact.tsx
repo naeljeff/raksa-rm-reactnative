@@ -17,7 +17,7 @@ const IncomingCoorporateContact = () => {
             <Text className="text-black capitalize">Company Code</Text>
             <Text className="text-black capitalize">:</Text>
           </View>
-          <Text className="flex-1 text-black text-xs uppercase py-1 px-2 border border-gray-200 bg-gray-100 rounded">
+          <Text className="flex-1 text-black text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded">
             ABC123
           </Text>
         </View>
@@ -28,7 +28,7 @@ const IncomingCoorporateContact = () => {
             <Text className="text-black capitalize">Company Name</Text>
             <Text className="text-black capitalize">:</Text>
           </View>
-          <Text className="flex-1 text-black text-xs uppercase py-1 px-2 border border-gray-200 bg-gray-100 rounded">
+          <Text className="flex-1 text-black text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded">
             ABC123
           </Text>
         </View>
@@ -39,7 +39,7 @@ const IncomingCoorporateContact = () => {
             <Text className="text-black capitalize">SOB Code</Text>
             <Text className="text-black capitalize">:</Text>
           </View>
-          <Text className="flex-1 text-black text-xs uppercase py-1 px-2 border border-gray-200 bg-gray-100 rounded">
+          <Text className="flex-1 text-black text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded">
             ABC123
           </Text>
         </View>
@@ -50,7 +50,7 @@ const IncomingCoorporateContact = () => {
             <Text className="text-black capitalize">SOB Name</Text>
             <Text className="text-black capitalize">:</Text>
           </View>
-          <Text className="flex-1 text-black text-xs uppercase py-1 px-2 border border-gray-200 bg-gray-100 rounded">
+          <Text className="flex-1 text-black text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded">
             ABC123
           </Text>
         </View>
@@ -61,7 +61,7 @@ const IncomingCoorporateContact = () => {
             <Text className="text-black capitalize">SOB Type</Text>
             <Text className="text-black capitalize">:</Text>
           </View>
-          <Text className="flex-1 text-black text-xs uppercase py-1 px-2 border border-gray-200 bg-gray-100 rounded">
+          <Text className="flex-1 text-black text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded">
             ABC123
           </Text>
         </View>
@@ -72,7 +72,7 @@ const IncomingCoorporateContact = () => {
             <Text className="text-black capitalize">Contact Person</Text>
             <Text className="text-black capitalize">:</Text>
           </View>
-          <Text className="flex-1 text-black text-xs uppercase py-1 px-2 border border-gray-200 bg-gray-100 rounded">
+          <Text className="flex-1 text-black text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded">
             ABC123
           </Text>
         </View>
@@ -83,7 +83,7 @@ const IncomingCoorporateContact = () => {
             <Text className="text-black capitalize">SOB Phone</Text>
             <Text className="text-black capitalize">:</Text>
           </View>
-          <Text className="flex-1 text-black text-xs uppercase py-1 px-2 border border-gray-200 bg-gray-100 rounded">
+          <Text className="flex-1 text-black text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded">
             ABC123
           </Text>
         </View>
@@ -94,7 +94,7 @@ const IncomingCoorporateContact = () => {
             <Text className="text-black capitalize">SOB Remarks</Text>
             <Text className="text-black capitalize">:</Text>
           </View>
-          <Text className="flex-1 text-black text-xs uppercase py-1 px-2 border border-gray-200 bg-gray-100 rounded">
+          <Text className="flex-1 text-black text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded">
             ABC123
           </Text>
         </View>
