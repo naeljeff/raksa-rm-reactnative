@@ -5,6 +5,8 @@ var Ionicons_1 = require("react-native-vector-icons/Ionicons");
 var Feather_1 = require("react-native-vector-icons/Feather");
 var react_native_paper_1 = require("react-native-paper");
 var react_native_1 = require("react-native");
+var react_redux_1 = require("react-redux");
+var webviewSlice_1 = require("../../../store/slices/webviewSlice");
 var SearchBy_1 = require("./SearchBy");
 var SortBy_1 = require("./SortBy");
 var OrderBy_1 = require("./OrderBy");
@@ -16,6 +18,7 @@ var SearchBarInput = function (_a) {
     var _e = react_1.useState(''), selected = _e[0], setSelected = _e[1];
     var _f = react_1.useState(''), localSortBy = _f[0], setLocalSortBy = _f[1];
     var _g = react_1.useState(''), localOrderBy = _g[0], setLocalOrderBy = _g[1];
+    var dispatch = react_redux_1.useDispatch();
     var handleClearPress = function () {
         setLocalSearch('');
         setSearchBy(false);
@@ -45,6 +48,11 @@ var SearchBarInput = function (_a) {
         setLocalOrderBy(selection);
         setOrderBy(selection);
     };
+    var handleAddPengajuan = function () {
+        var param = 'a=TOKEN_20240731_115636324000&b=TOKEN_20240731_115636324002&c=TOKEN_20240731_115636324004';
+        var webviewUrl = "https://www.rks-m.com/prog-x/pengajuan_survey/rq_survey.php?" + param;
+        dispatch(webviewSlice_1.setWebViewUrl(webviewUrl));
+    };
     return (react_1["default"].createElement(react_native_1.View, { className: "w-full h-[80px] bg-[#f7ebd7] flex flex-col justify-center items-start" },
         react_1["default"].createElement(react_native_1.View, { className: "w-full p-1 mt-1 ml-0.5 pr-2 flex flex-row justify-between items-center" },
             react_1["default"].createElement(react_native_1.View, { className: "w-full flex flex-row items-center justify-start my-1" },
@@ -66,7 +74,7 @@ var SearchBarInput = function (_a) {
             react_1["default"].createElement(react_native_1.View, { className: "flex flex-row justify-center items-center gap-x-2 mb-2 mr-2" },
                 react_1["default"].createElement(react_native_paper_1.Surface, { elevation: 2, className: "rounded-lg" },
                     react_1["default"].createElement(react_native_1.View, { className: "px-1 py-1 bg-white rounded-lg" },
-                        react_1["default"].createElement(react_native_1.TouchableOpacity, { onPress: function () { return console.log('Add'); } },
+                        react_1["default"].createElement(react_native_1.TouchableOpacity, { onPress: handleAddPengajuan },
                             react_1["default"].createElement(Ionicons_1["default"], { name: "add", size: 20, style: { color: 'black' } })))),
                 react_1["default"].createElement(react_native_paper_1.Surface, { elevation: 2, className: "roundedlg" },
                     react_1["default"].createElement(react_native_1.View, { className: "px-1 py-1 bg-white rounded-lg" },

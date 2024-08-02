@@ -3,7 +3,9 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import Feather from 'react-native-vector-icons/Feather';
 import {Surface} from 'react-native-paper';
 import {View, TextInput, TouchableOpacity} from 'react-native';
+import {useDispatch} from 'react-redux';
 
+import {setWebViewUrl} from '../../../store/slices/webviewSlice';
 import SearchBy from './SearchBy';
 import SortBy from './SortBy';
 import OrderBy from './OrderBy';
@@ -29,6 +31,7 @@ const SearchBarInput = ({
   const [selected, setSelected] = useState<string>('');
   const [localSortBy, setLocalSortBy] = useState<string>('');
   const [localOrderBy, setLocalOrderBy] = useState<string>('');
+  const dispatch = useDispatch();
 
   const handleClearPress = () => {
     setLocalSearch('');
@@ -64,6 +67,13 @@ const SearchBarInput = ({
   const onOrderByChange = (selection: string) => {
     setLocalOrderBy(selection);
     setOrderBy(selection);
+  };
+
+  const handleAddPengajuan = () => {
+    const param =
+      'a=TOKEN_20240731_115636324000&b=TOKEN_20240731_115636324002&c=TOKEN_20240731_115636324004';
+    const webviewUrl = `https://www.rks-m.com/prog-x/pengajuan_survey/rq_survey.php?${param}`;
+    dispatch(setWebViewUrl(webviewUrl));
   };
 
   return (
@@ -124,16 +134,17 @@ const SearchBarInput = ({
           </View>
         </View>
 
-        {/* Upload */}
+        {/* Add */}
         <View className="flex flex-row justify-center items-center gap-x-2 mb-2 mr-2">
           <Surface elevation={2} className="rounded-lg">
             <View className="px-1 py-1 bg-white rounded-lg">
-              <TouchableOpacity onPress={() => console.log('Add')}>
+              <TouchableOpacity onPress={handleAddPengajuan}>
                 <Icon name="add" size={20} style={{color: 'black'}} />
               </TouchableOpacity>
             </View>
           </Surface>
 
+          {/* Upload */}
           <Surface elevation={2} className="roundedlg">
             <View className="px-1 py-1 bg-white rounded-lg">
               <TouchableOpacity onPress={() => console.log('upload')}>
