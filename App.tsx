@@ -9,12 +9,14 @@ import store from './store';
 import LoginPage from './components/Layout/LoginPage';
 import MainPage from './components/Layout/MainPage';
 import MainFUAPage from './components/Layout/MainFUAPage';
-import { JobProps } from './props/JobProps';
+import {JobProps} from './props/JobProps';
+import MySurveyFUAPage from './components/Layout/MySurveyFUAPage';
 
 export type RootStackParamList = {
   login: undefined;
   mainPage: undefined;
   formFUAIncoming: {item: JobProps};
+  formFUAMySurvey: {item: JobProps};
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -46,6 +48,13 @@ const App = () => {
             <Stack.Screen
               name="formFUAIncoming"
               component={MainFUAPage}
+              options={{
+                gestureEnabled: true,
+              }}
+            />
+            <Stack.Screen
+              name="formFUAMySurvey"
+              component={MySurveyFUAPage}
               options={{
                 gestureEnabled: true,
               }}
