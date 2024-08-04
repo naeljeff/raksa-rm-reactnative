@@ -1,25 +1,29 @@
 import {Text, View} from 'react-native';
-import React from 'react';
+import {useDispatch, useSelector} from 'react-redux';
+import React, {useEffect} from 'react';
 
-import {formatDate} from '../../../../utilities/function';
+import {RootState} from '../../../../store';
+import {
+  selectSpecificJob,
+  fetchSpecificJob,
+} from '../../../../store/slices/surveySlice';
+import {calcAgingDate, formatDate} from '../../../../utilities/function';
 
 type IncomingAppointment = {
   noPengajuanSurvey: string;
   unitNo: string;
-  createdAt: string;
-  emailRequest: string;
-  aging: number;
-  priority: string;
 };
 
 const IncomingAppointment = ({
   noPengajuanSurvey,
   unitNo,
-  createdAt,
-  emailRequest,
-  aging,
-  priority,
 }: IncomingAppointment) => {
+  const dispatch = useDispatch();
+  const specificJob = useSelector(selectSpecificJob);
+
+  useEffect(() => {
+    dispatch(fetchSpecificJob({noPengajuanSurvey, unitNo}) as any);
+  }, [dispatch, noPengajuanSurvey, unitNo]);
   return (
     <View className="w-full flex flex-col items-start justify-center mb-2">
       <Text className="text-lg text-black font-bold px-3 py-1.5">
@@ -36,7 +40,7 @@ const IncomingAppointment = ({
             <Text className="text-black capitalize">:</Text>
           </View>
           <Text className="flex-1 text-gray-400 text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded">
-            {noPengajuanSurvey}
+            {specificJob?.noPengajuanSurvey ?? 'Null'}
           </Text>
         </View>
 
@@ -47,7 +51,7 @@ const IncomingAppointment = ({
             <Text className="text-black capitalize">:</Text>
           </View>
           <Text className="flex-1 text-gray-400 text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded">
-            {unitNo}
+            {specificJob?.unitNo ?? 'Null'}
           </Text>
         </View>
 
@@ -58,7 +62,7 @@ const IncomingAppointment = ({
             <Text className="text-black capitalize">:</Text>
           </View>
           <Text className="flex-1 text-gray-400 text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded">
-            {emailRequest}
+            {specificJob?.emailRequest ?? 'Null'}
           </Text>
         </View>
 
@@ -69,7 +73,7 @@ const IncomingAppointment = ({
             <Text className="text-black capitalize">:</Text>
           </View>
           <Text className="flex-1 text-gray-400 text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded">
-            {formatDate(createdAt)}
+            {specificJob?.createdAt ? formatDate(specificJob.createdAt) : 'Null'}
           </Text>
         </View>
 
@@ -80,7 +84,7 @@ const IncomingAppointment = ({
             <Text className="text-black capitalize">:</Text>
           </View>
           <Text className="flex-1 text-gray-400 text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded">
-            {aging}
+            {specificJob?.createdAt ? calcAgingDate(specificJob.createdAt) : 'Null'}
           </Text>
         </View>
 
@@ -91,7 +95,7 @@ const IncomingAppointment = ({
             <Text className="text-black capitalize">:</Text>
           </View>
           <Text className="flex-1 text-gray-400 text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded">
-            {priority}
+            {specificJob?.priority ?? 'Null'}
           </Text>
         </View>
       </View>

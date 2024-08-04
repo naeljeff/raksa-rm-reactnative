@@ -35,19 +35,12 @@ const MainFUAPage = ({route}: MainFUAPageProps) => {
         <IncomingAppointment
           noPengajuanSurvey={item.noPengajuanSurvey}
           unitNo={item.unitNo}
-          createdAt={item.createdAt}
-          emailRequest={item.emailRequest}
-          aging={calcAgingDate(item.createdAt)}
-          priority={item.priority}
         />
 
         {/* Personal Contact Schedule */}
         <IncomingPersonalContact
-          nama={item.nama}
-          alamat={item.alamat}
-          noTelp={item.noTelp}
-          email={item.email}
-          catatan={item.catatan}
+          noPengajuanSurvey={item.noPengajuanSurvey}
+          unitNo={item.unitNo}
         />
 
         {/* Coorporate Contact Person */}
