@@ -2,6 +2,11 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {PaperProvider} from 'react-native-paper';
 import React from 'react';
+import { LogBox } from 'react-native';
+
+LogBox.ignoreLogs([
+  'Warning: TextInput.Icon: Support for defaultProps will be removed from function components in a future major release.',
+]);
 
 import {Provider} from 'react-redux';
 import store from './store';

@@ -32,7 +32,7 @@ var SurveyFUA = react_1["default"].memo(function (_a) {
         if (!date)
             return '';
         var day = date.getDate().toString().padStart(2, '0');
-        var month = (date.getMonth() + 1).toString().padStart(2, '0');
+        var month = date.toLocaleString('en-US', { month: 'short' });
         var year = date.getFullYear().toString().slice(-2);
         return day + "-" + month + "-" + year;
     };
