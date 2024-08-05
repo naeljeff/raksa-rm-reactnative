@@ -1,21 +1,25 @@
 import {Text, View} from 'react-native';
-import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import React, {useEffect} from 'react';
+
+import { RootState } from '../../../../store';
+import { selectSpecificJob, fetchSpecificJob } from '../../../../store/slices/surveySlice';
 
 type IncomingPersonalContact = {
-  nama: string;
-  alamat: string;
-  noTelp: string;
-  email: string;
-  catatan: string;
+  noPengajuanSurvey: string;
+  unitNo: string;
 };
 
-const IncomingPersonalContact = ({
-  nama,
-  alamat,
-  noTelp,
-  email,
-  catatan,
+const IncomingPersonalContact = React.memo(({
+  noPengajuanSurvey,
+  unitNo,
 }: IncomingPersonalContact) => {
+  const dispatch = useDispatch();
+  const specificJob = useSelector(selectSpecificJob);
+
+  useEffect(() => {
+    dispatch(fetchSpecificJob({ noPengajuanSurvey, unitNo}) as any);
+  }, [dispatch, noPengajuanSurvey, unitNo])
   return (
     <View className="w-full flex flex-col items-start justify-center mb-2">
       <Text className="text-lg text-black font-bold px-3 py-1.5">
@@ -32,7 +36,7 @@ const IncomingPersonalContact = ({
             <Text className="text-black capitalize">:</Text>
           </View>
           <Text className=" flex-1 text-gray-400 text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded">
-            {nama}
+            {specificJob?.nama ?? 'Null'}
           </Text>
         </View>
 
@@ -43,7 +47,7 @@ const IncomingPersonalContact = ({
             <Text className="text-black capitalize">:</Text>
           </View>
           <Text className="flex-1 text-gray-400 text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded">
-            {alamat}
+            {specificJob?.alamat ?? 'Null'}
           </Text>
         </View>
 
@@ -54,7 +58,7 @@ const IncomingPersonalContact = ({
             <Text className="text-black capitalize">:</Text>
           </View>
           <Text className="flex-1 text-gray-400 text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded">
-            {noTelp}
+            {specificJob?.noTelp ?? 'Null'}
           </Text>
         </View>
 
@@ -65,7 +69,7 @@ const IncomingPersonalContact = ({
             <Text className="text-black capitalize">:</Text>
           </View>
           <Text className="flex-1 text-gray-400 text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded">
-            {email}
+            {specificJob?.email ?? 'Null'}
           </Text>
         </View>
 
@@ -76,12 +80,12 @@ const IncomingPersonalContact = ({
             <Text className="text-black capitalize">:</Text>
           </View>
           <Text className="flex-1 text-gray-400 text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded">
-            {catatan}
+            {specificJob?.catatan ?? 'Null'}
           </Text>
         </View>
       </View>
     </View>
   );
-};
+});
 
 export default IncomingPersonalContact;

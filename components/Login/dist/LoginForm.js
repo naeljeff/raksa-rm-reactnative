@@ -53,6 +53,7 @@ var react_native_simple_toast_1 = require("react-native-simple-toast");
 var native_1 = require("@react-navigation/native");
 var react_redux_1 = require("react-redux");
 var react_1 = require("react");
+var react_native_device_info_1 = require("react-native-device-info");
 var userSlice_1 = require("../../store/slices/userSlice");
 var LoginForm = function (_a) {
     var navigation = _a.navigation;
@@ -62,10 +63,15 @@ var LoginForm = function (_a) {
     }), formInput = _b[0], setFormInput = _b[1];
     var _c = react_1.useState(false), showPassword = _c[0], setShowPassword = _c[1];
     var _d = react_1.useState(false), formSubmitted = _d[0], setFormSubmitted = _d[1];
+    var _e = react_1.useState(''), deviceId = _e[0], setDeviceId = _e[1];
+    var appVersion = '0.1.0';
     var dispatch = react_redux_1.useDispatch();
     var isLoading = react_redux_1.useSelector(userSlice_1.selectUserLoading);
     var loggedIn = react_redux_1.useSelector(userSlice_1.selectUserLoggedIn);
     var error = react_redux_1.useSelector(userSlice_1.selectUserError);
+    react_native_device_info_1["default"].getUniqueId().then(function (uniqueId) {
+        setDeviceId(uniqueId);
+    });
     react_1.useEffect(function () {
         if (loggedIn) {
             react_native_simple_toast_1["default"].show('Login Berhasil!', react_native_simple_toast_1["default"].LONG);
@@ -105,9 +111,9 @@ var LoginForm = function (_a) {
     var handleFormSubmit = function () {
         validateUserLogin();
     };
-    return (react_1["default"].createElement(react_native_1.View, { className: "flex-1 flex-col justify-center items-center gap-y-8" },
+    return (react_1["default"].createElement(react_native_1.View, { className: "flex-1 flex-col justify-center items-center space-y-4" },
         react_1["default"].createElement(react_native_1.Text, { className: "text-2xl font-semibold text-black tracking-wide -mt-2" }, "Sign In"),
-        react_1["default"].createElement(react_native_paper_1.Surface, { elevation: 5, className: "rounded-xl" },
+        react_1["default"].createElement(react_native_paper_1.Surface, { elevation: 5, className: "rounded-xl mb-2" },
             react_1["default"].createElement(react_native_1.View, { className: "container h-[300px] w-[300px] bg-white/80 rounded-xl p-5" },
                 react_1["default"].createElement(react_native_paper_1.TextInput, { mode: "outlined", label: "Username", placeholder: "Enter your username", outlineColor: "#94a3b8", outlineStyle: {
                         borderRadius: 10
@@ -130,6 +136,7 @@ var LoginForm = function (_a) {
                                 borderColor: '#64748b',
                                 borderRadius: 50
                             }, textColor: "black", rippleColor: "white", onPress: handleFormSubmit }, isLoading ? 'Loading...' : 'Login'))))),
-        react_1["default"].createElement(react_native_1.Text, { className: "text-sm text-black tracking-tighter" }, "Your Hardware ID:")));
+        react_1["default"].createElement(react_native_1.Text, { className: "text-sm text-black tracking-tighter -mb-3" }, "Your Hardware ID: " + deviceId),
+        react_1["default"].createElement(react_native_1.Text, { className: "text-sm text-black tracking-tighter" }, "App Version: " + appVersion)));
 };
 exports["default"] = LoginForm;
