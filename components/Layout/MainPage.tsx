@@ -45,7 +45,7 @@ const MainPage = ({route}: MainPageProps) => {
   };
 
   const handleCloseWebview = () => {
-    Keyboard.dismiss();
+    // Keyboard.dismiss();
     dispatch(clearWebViewUrl())
   }
 

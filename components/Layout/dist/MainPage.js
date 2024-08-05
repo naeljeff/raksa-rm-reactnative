@@ -35,7 +35,7 @@ var MainPage = function (_a) {
         }
     };
     var handleCloseWebview = function () {
-        react_native_1.Keyboard.dismiss();
+        // Keyboard.dismiss();
         dispatch(webviewSlice_1.clearWebViewUrl());
     };
     if (webViewUrl) {

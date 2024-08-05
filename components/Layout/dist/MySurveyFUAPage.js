@@ -12,8 +12,8 @@ var MySurveyFUAPage = function (_a) {
     return (react_1["default"].createElement(react_native_1.View, { className: "w-full h-full flex flex-col bg-[#f7ebd7]" },
         react_1["default"].createElement(HeaderIncomingFUA_1["default"], null),
         react_1["default"].createElement(react_native_1.ScrollView, { automaticallyAdjustKeyboardInsets: true },
-            react_1["default"].createElement(SurveyAppointment_1["default"], null),
-            react_1["default"].createElement(SurveyPersonalContact_1["default"], null),
+            react_1["default"].createElement(SurveyAppointment_1["default"], { noPengajuanSurvey: 'asd', unitNo: 'asd' }),
+            react_1["default"].createElement(SurveyPersonalContact_1["default"], { noPengajuanSurvey: 'asd', unitNo: 'asd' }),
             react_1["default"].createElement(SurveyCoorporateContact_1["default"], null),
             react_1["default"].createElement(SurveyFUA_1["default"], null))));
 };

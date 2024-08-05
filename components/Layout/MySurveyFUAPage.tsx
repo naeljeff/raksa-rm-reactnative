@@ -29,14 +29,20 @@ const MySurveyFUAPage = ({route}: MySurveyFUAProps) => {
 
       <ScrollView automaticallyAdjustKeyboardInsets={true}>
         {/* Appointment Schedule */}
-        <SurveyAppointment />
+        <SurveyAppointment 
+        noPengajuanSurvey={'asd'}
+        unitNo={'asd'}
+        />
         {/* <IncomingAppointment
           noPengajuanSurvey={item.noPengajuanSurvey}
           unitNo={item.unitNo}
         /> */}
 
         {/* Personal Contact Schedule */}
-        <SurveyPersonalContact />
+        <SurveyPersonalContact 
+        noPengajuanSurvey={'asd'}
+        unitNo={'asd'}
+        />
         {/* <IncomingPersonalContact
           noPengajuanSurvey={item.noPengajuanSurvey}
           unitNo={item.unitNo}
