@@ -1,7 +1,7 @@
 import {Text, View} from 'react-native';
 import React from 'react';
 
-const IncomingFUA = () => {
+const IncomingFUA = React.memo(() => {
   return (
     <View className="w-full flex flex-col items-start justify-center mb-4">
       <Text className="text-lg text-black font-bold px-3">
@@ -68,6 +68,6 @@ const IncomingFUA = () => {
       </View>
     </View>
   );
-};
+});
 
 export default IncomingFUA;

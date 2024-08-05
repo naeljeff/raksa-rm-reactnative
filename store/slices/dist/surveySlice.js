@@ -67,7 +67,9 @@ exports.fetchSpecificJob = toolkit_1.createAsyncThunk('survey/fetchSpecificJob',
                 case 0: return [4 /*yield*/, getSurveyData_1.fetchSurveyData()];
                 case 1:
                     response = _b.sent();
-                    specificJob = response.data.find(function (item) { return item.noPengajuanSurvey === noPengajuanSurvey && item.unitNo === unitNo; });
+                    specificJob = response.data.find(function (item) {
+                        return item.noPengajuanSurvey === noPengajuanSurvey && item.unitNo === unitNo;
+                    });
                     return [2 /*return*/, specificJob];
             }
         });

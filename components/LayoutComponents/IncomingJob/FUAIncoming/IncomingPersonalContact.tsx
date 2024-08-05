@@ -10,7 +10,7 @@ type IncomingPersonalContact = {
   unitNo: string;
 };
 
-const IncomingPersonalContact = ({
+const IncomingPersonalContact = React.memo(({
   noPengajuanSurvey,
   unitNo,
 }: IncomingPersonalContact) => {
@@ -86,6 +86,6 @@ const IncomingPersonalContact = ({
       </View>
     </View>
   );
-};
+});
 
 export default IncomingPersonalContact;

@@ -1,7 +1,7 @@
 import {Text, View} from 'react-native';
 import React from 'react';
 
-const IncomingCoorporateContact = () => {
+const IncomingCoorporateContact = React.memo(() => {
   return (
     <View className="w-full flex flex-col items-start justify-center mb-2">
       <Text className="text-lg text-black font-bold px-3">
@@ -101,6 +101,6 @@ const IncomingCoorporateContact = () => {
       </View>
     </View>
   );
-};
+});
 
 export default IncomingCoorporateContact;

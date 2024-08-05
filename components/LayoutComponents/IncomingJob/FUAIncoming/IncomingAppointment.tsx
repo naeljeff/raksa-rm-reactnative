@@ -14,7 +14,7 @@ type IncomingAppointment = {
   unitNo: string;
 };
 
-const IncomingAppointment = ({
+const IncomingAppointment = React.memo(({
   noPengajuanSurvey,
   unitNo,
 }: IncomingAppointment) => {
@@ -101,6 +101,6 @@ const IncomingAppointment = ({
       </View>
     </View>
   );
-};
+});
 
 export default IncomingAppointment;

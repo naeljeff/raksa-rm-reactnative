@@ -22,11 +22,23 @@ export const fetchData = createAsyncThunk('survey/fetchData', async () => {
   return response.data;
 });
 
-export const fetchSpecificJob = createAsyncThunk('survey/fetchSpecificJob', async({noPengajuanSurvey, unitNo}: {noPengajuanSurvey: string, unitNo: string}) => {
-  const response = await fetchSurveyData();
-  const specificJob = response.data.find((item: JobProps) => item.noPengajuanSurvey === noPengajuanSurvey && item.unitNo === unitNo);
-  return specificJob;
-})
+export const fetchSpecificJob = createAsyncThunk(
+  'survey/fetchSpecificJob',
+  async ({
+    noPengajuanSurvey,
+    unitNo,
+  }: {
+    noPengajuanSurvey: string;
+    unitNo: string;
+  }) => {
+    const response = await fetchSurveyData();
+    const specificJob = response.data.find(
+      (item: JobProps) =>
+        item.noPengajuanSurvey === noPengajuanSurvey && item.unitNo === unitNo,
+    );
+    return specificJob;
+  },
+);
 
 const surveySlice = createSlice({
   name: 'survey',
@@ -40,7 +52,7 @@ const surveySlice = createSlice({
     },
     setSpecificJob(state, action) {
       state.specificJob = action.payload;
-    }
+    },
   },
   extraReducers: builder => {
     // Builder buat fetch data
@@ -63,11 +75,12 @@ const surveySlice = createSlice({
     // For specific job
     builder.addCase(fetchSpecificJob.fulfilled, (state, action) => {
       state.specificJob = action.payload;
-    })
+    });
   },
 });
 
-export const {startRefreshing, stopRefreshing, setSpecificJob} = surveySlice.actions;
+export const {startRefreshing, stopRefreshing, setSpecificJob} =
+  surveySlice.actions;
 export const selectData = (state: RootState) => state.survey.data;
 export const selectRefreshing = (state: RootState) => state.survey.refreshing;
 export const selectSpecificJob = (state: RootState) => state.survey.specificJob;

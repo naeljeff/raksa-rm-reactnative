@@ -5,7 +5,7 @@ var react_redux_1 = require("react-redux");
 var react_1 = require("react");
 var surveySlice_1 = require("../../../../store/slices/surveySlice");
 var function_1 = require("../../../../utilities/function");
-var IncomingAppointment = function (_a) {
+var IncomingAppointment = react_1["default"].memo(function (_a) {
     var _b, _c, _d, _e;
     var noPengajuanSurvey = _a.noPengajuanSurvey, unitNo = _a.unitNo;
     var dispatch = react_redux_1.useDispatch();
@@ -47,5 +47,5 @@ var IncomingAppointment = function (_a) {
                     react_1["default"].createElement(react_native_1.Text, { className: "text-black capitalize" }, "Priority"),
                     react_1["default"].createElement(react_native_1.Text, { className: "text-black capitalize" }, ":")),
                 react_1["default"].createElement(react_native_1.Text, { className: "flex-1 text-gray-400 text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded" }, (_e = specificJob === null || specificJob === void 0 ? void 0 : specificJob.priority) !== null && _e !== void 0 ? _e : 'Null')))));
-};
+});
 exports["default"] = IncomingAppointment;
