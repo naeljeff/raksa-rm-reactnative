@@ -7,6 +7,7 @@ var SurveyAppointment_1 = require("../LayoutComponents/MySurvey/FUASurvey/Survey
 var SurveyPersonalContact_1 = require("../LayoutComponents/MySurvey/FUASurvey/SurveyPersonalContact");
 var SurveyCoorporateContact_1 = require("../LayoutComponents/MySurvey/FUASurvey/SurveyCoorporateContact");
 var SurveyFUA_1 = require("../LayoutComponents/MySurvey/FUASurvey/SurveyFUA");
+//TODO: Nanti tambahin datetimepicker buat FUA
 var MySurveyFUAPage = function (_a) {
     var route = _a.route;
     return (react_1["default"].createElement(react_native_1.View, { className: "w-full h-full flex flex-col bg-[#f7ebd7]" },
@@ -14,7 +15,7 @@ var MySurveyFUAPage = function (_a) {
         react_1["default"].createElement(react_native_1.ScrollView, { automaticallyAdjustKeyboardInsets: true },
             react_1["default"].createElement(SurveyAppointment_1["default"], { noPengajuanSurvey: 'asd', unitNo: 'asd' }),
             react_1["default"].createElement(SurveyPersonalContact_1["default"], { noPengajuanSurvey: 'asd', unitNo: 'asd' }),
-            react_1["default"].createElement(SurveyCoorporateContact_1["default"], null),
-            react_1["default"].createElement(SurveyFUA_1["default"], null))));
+            react_1["default"].createElement(SurveyCoorporateContact_1["default"], { noPengajuanSurvey: 'asd', unitNo: 'asd' }),
+            react_1["default"].createElement(SurveyFUA_1["default"], { noPengajuanSurvey: 'asd', unitNo: 'asd' }))));
 };
 exports["default"] = MySurveyFUAPage;
