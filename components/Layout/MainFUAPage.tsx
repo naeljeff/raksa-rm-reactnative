@@ -1,4 +1,4 @@
-import {ScrollView, Text, View} from 'react-native';
+import {ScrollView, View} from 'react-native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {RouteProp} from '@react-navigation/native';
 import React from 'react';
@@ -9,7 +9,6 @@ import IncomingAppointment from '../LayoutComponents/IncomingJob/FUAIncoming/Inc
 import IncomingPersonalContact from '../LayoutComponents/IncomingJob/FUAIncoming/IncomingPersonalContact';
 import IncomingCoorporateContact from '../LayoutComponents/IncomingJob/FUAIncoming/IncomingCoorporateContact';
 import IncomingFUA from '../LayoutComponents/IncomingJob/FUAIncoming/IncomingFUA';
-import {calcAgingDate} from '../../utilities/function';
 
 type MainFUANavigationProp = NativeStackNavigationProp<
   RootStackParamList,

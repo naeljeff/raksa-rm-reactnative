@@ -4,7 +4,8 @@ import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import Toast from 'react-native-simple-toast';
 import {CommonActions} from '@react-navigation/native';
 import {useDispatch, useSelector} from 'react-redux';
-import React, {useEffect, useReducer, useState} from 'react';
+import React, {useEffect, useState} from 'react';
+import DeviceInfo from 'react-native-device-info';
 
 import {RootStackParamList} from '../../App';
 import {AppDispatch} from '../../store';
@@ -31,11 +32,16 @@ const LoginForm = ({navigation}: LoginFormProps) => {
   });
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const [formSubmitted, setFormSubmitted] = useState<boolean>(false);
+  const [deviceId, setDeviceId] = useState<string>('');
+  const appVersion = '0.1.0';
 
   const dispatch = useDispatch<AppDispatch>();
   const isLoading = useSelector(selectUserLoading);
   const loggedIn = useSelector(selectUserLoggedIn);
   const error = useSelector(selectUserError);
+  DeviceInfo.getUniqueId().then(uniqueId => {
+    setDeviceId(uniqueId);
+  });
 
   useEffect(() => {
     if (loggedIn) {
@@ -81,12 +87,12 @@ const LoginForm = ({navigation}: LoginFormProps) => {
   };
 
   return (
-    <View className="flex-1 flex-col justify-center items-center gap-y-8">
+    <View className="flex-1 flex-col justify-center items-center space-y-4">
       <Text className="text-2xl font-semibold text-black tracking-wide -mt-2">
         Sign In
       </Text>
 
-      <Surface elevation={5} className="rounded-xl">
+      <Surface elevation={5} className="rounded-xl mb-2">
         <View className="container h-[300px] w-[300px] bg-white/80 rounded-xl p-5">
           {/* Username */}
           <TextInput
@@ -162,8 +168,11 @@ const LoginForm = ({navigation}: LoginFormProps) => {
         </View>
       </Surface>
 
+      <Text className="text-sm text-black tracking-tighter -mb-3">
+        {`Your Hardware ID: ${deviceId}`}
+      </Text>
       <Text className="text-sm text-black tracking-tighter">
-        Your Hardware ID:
+        {`App Version: ${appVersion}`}
       </Text>
     </View>
   );

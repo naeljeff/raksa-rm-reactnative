@@ -11,7 +11,7 @@ var Survey = react_1["default"].memo(function (_a) {
     var formattedDate = function_1.formatDate(item.createdAt);
     var handleListPress = function () {
         console.log("Index: " + index + " | Item: " + item.noPengajuanSurvey);
-        navigation.navigate('formFUAIncoming', {
+        navigation.navigate('formFUAMySurvey', {
             item: item
         });
     };

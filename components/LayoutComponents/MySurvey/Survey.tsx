@@ -20,7 +20,7 @@ const Survey = React.memo(({item, index, navigation}: MySurveyPageProps) => {
 
   const handleListPress = () => {
     console.log(`Index: ${index} | Item: ${item.noPengajuanSurvey}`);
-    navigation.navigate('formFUAIncoming', {
+    navigation.navigate('formFUAMySurvey', {
       item: item,
     });
   };
