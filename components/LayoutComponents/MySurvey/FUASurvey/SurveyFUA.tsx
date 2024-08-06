@@ -1,6 +1,9 @@
 import {Text, TextInput, TouchableOpacity, View} from 'react-native';
-import DateTimePicker from '@react-native-community/datetimepicker';
+import DatePicker from 'react-native-date-picker';
 import React, {useState} from 'react';
+import FAwesome from 'react-native-vector-icons/FontAwesome6';
+
+import SurveyFUAStatus from './FUASurveyModal/SurveyFUAStatus';
 
 type SurveyFUA = {
   noPengajuanSurvey: string;
@@ -11,39 +14,42 @@ const SurveyFUA = React.memo(({noPengajuanSurvey, unitNo}: SurveyFUA) => {
   const [noPengajuan, setNoPengajuan] = useState<string>(noPengajuanSurvey);
   const [contactDate, setContactDate] = useState<Date | undefined>(undefined);
   const [isOpenContactDate, setIsOpenContactDate] = useState<boolean>(false);
-  const [appointmentDate, setAppointmentDate] = useState<Date | undefined>(undefined);
-  const [isOpenAppointmentDate, setIsOpenAppointmentDate] = useState<boolean>(false);
+  const [appointmentDate, setAppointmentDate] = useState<Date | undefined>(
+    undefined,
+  );
+  const [isOpenAppointmentDate, setIsOpenAppointmentDate] =
+    useState<boolean>(false);
+  const [isStatusOpen, setIsStatusOpen] = useState<boolean>(false);
+  const [FUAStatus, setFUAStatus] = useState<string>('ongoing');
 
-  const toggleContactDate = () => {
-    setIsOpenContactDate(!isOpenContactDate);
+  const onConfirmContactDate = (date?: Date) => {
+    setIsOpenContactDate(false);
+    setContactDate(date);
   };
 
-  const onChangeContactDate = (event: any, selectedDate?: Date) => {
-    if (selectedDate) {
-      setContactDate(selectedDate);
-    }
-    setIsOpenContactDate(!isOpenContactDate);
+  const closeContactDate = () => {
+    setIsOpenContactDate(false);
   };
 
-  const toggleAppointmentDate = () => {
-    setIsOpenAppointmentDate(!isOpenAppointmentDate);
+  const onConfirmAppointmentDate = (date?: Date) => {
+    setIsOpenAppointmentDate(false);
+    setAppointmentDate(date);
   };
 
-  const onChangeAppointmentDate = (event: any, selectedDate?: Date) => {
-    if (selectedDate) {
-      setAppointmentDate(selectedDate);
-    }
-    setIsOpenAppointmentDate(!isOpenAppointmentDate);
+  const closeAppointmentDate = () => {
+    setIsOpenAppointmentDate(false);
   };
 
   const formatDateString = (date?: Date): string => {
     if (!date) return '';
 
     const day = date.getDate().toString().padStart(2, '0');
-    const month = date.toLocaleString('en-US', {month: 'short'})
+    const month = date.toLocaleString('en-US', {month: 'short'});
     const year = date.getFullYear().toString().slice(-2);
+    const hours = date.getHours().toString().padStart(2, '0');
+    const minutes = date.getMinutes().toString().padStart(2, '0');
 
-    return `${day}-${month}-${year}`;
+    return `${day}-${month}-${year} ${hours}:${minutes}`;
   };
 
   return (
@@ -61,17 +67,17 @@ const SurveyFUA = React.memo(({noPengajuanSurvey, unitNo}: SurveyFUA) => {
             <Text className="text-black capitalize">Contact Date</Text>
             <Text className="text-black capitalize">:</Text>
           </View>
-          {isOpenContactDate && (
-            <DateTimePicker
-              mode="date"
-              onChange={onChangeContactDate}
-              value={contactDate ?? new Date()}
-            />
-          )}
+          <DatePicker
+            modal
+            open={isOpenContactDate}
+            date={contactDate ?? new Date()}
+            locale="en-GB"
+            onConfirm={onConfirmContactDate}
+            onCancel={closeContactDate}
+          />
           <TouchableOpacity
-            onPress={toggleContactDate}
-            className="flex-1"
-          >
+            onPress={() => setIsOpenContactDate(true)}
+            className="flex-1">
             <TextInput
               value={formatDateString(contactDate)}
               editable={false}
@@ -87,17 +93,17 @@ const SurveyFUA = React.memo(({noPengajuanSurvey, unitNo}: SurveyFUA) => {
             <Text className="text-black capitalize">Appointment Date</Text>
             <Text className="text-black capitalize">:</Text>
           </View>
-          {isOpenAppointmentDate && (
-            <DateTimePicker
-              mode="date"
-              onChange={onChangeAppointmentDate}
-              value={appointmentDate ?? new Date()}
-            />
-          )}
+          <DatePicker
+            modal
+            open={isOpenAppointmentDate}
+            date={appointmentDate ?? new Date()}
+            locale="en-GB"
+            onConfirm={onConfirmAppointmentDate}
+            onCancel={closeAppointmentDate}
+          />
           <TouchableOpacity
-            onPress={toggleAppointmentDate}
-            className="flex-1"
-          >
+            onPress={() => setIsOpenAppointmentDate(true)}
+            className="flex-1">
             <TextInput
               value={formatDateString(appointmentDate)}
               editable={false}
@@ -128,12 +134,22 @@ const SurveyFUA = React.memo(({noPengajuanSurvey, unitNo}: SurveyFUA) => {
             <Text className="text-black capitalize">Status</Text>
             <Text className="text-black capitalize">:</Text>
           </View>
-          <TextInput
-            value={noPengajuan}
-            onChangeText={setNoPengajuan}
-            className="flex-1 text-black text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded">
-            {/* {specificJob?.nama ?? 'Null'} */}
-          </TextInput>
+
+          <TouchableOpacity
+            onPress={() => setIsStatusOpen(true)}
+            className="relative flex-1 flex-row items-center border border-gray-300 bg-gray-100 rounded pr-3">
+            <TextInput
+              value={FUAStatus}
+              editable={false}
+              className="flex-1 text-black text-xs uppercase py-1 px-2"
+            />
+            <FAwesome
+              name={isStatusOpen ? "chevron-up": "chevron-down"}
+              size={16}
+              color="black"
+            />
+          </TouchableOpacity>
+          {isStatusOpen && <SurveyFUAStatus openFUAStatus={setIsStatusOpen} statusFUA={setFUAStatus}/>}
         </View>
 
         {/* Remarks */}
