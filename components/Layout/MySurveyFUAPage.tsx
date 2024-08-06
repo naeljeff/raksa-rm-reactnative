@@ -20,7 +20,7 @@ type MySurveyFUAProps = {
   navigation: MySurveyNavigationProps;
   route: MySurveyRouteProp;
 };
-
+//TODO: Nanti tambahin datetimepicker buat FUA
 const MySurveyFUAPage = ({route}: MySurveyFUAProps) => {
   return (
     <View className="w-full h-full flex flex-col bg-[#f7ebd7]">
@@ -29,31 +29,25 @@ const MySurveyFUAPage = ({route}: MySurveyFUAProps) => {
 
       <ScrollView automaticallyAdjustKeyboardInsets={true}>
         {/* Appointment Schedule */}
-        <SurveyAppointment 
-        noPengajuanSurvey={'asd'}
-        unitNo={'asd'}
-        />
+        <SurveyAppointment noPengajuanSurvey={'asd'} unitNo={'asd'} />
         {/* <IncomingAppointment
           noPengajuanSurvey={item.noPengajuanSurvey}
           unitNo={item.unitNo}
         /> */}
 
         {/* Personal Contact Schedule */}
-        <SurveyPersonalContact 
-        noPengajuanSurvey={'asd'}
-        unitNo={'asd'}
-        />
+        <SurveyPersonalContact noPengajuanSurvey={'asd'} unitNo={'asd'} />
         {/* <IncomingPersonalContact
           noPengajuanSurvey={item.noPengajuanSurvey}
           unitNo={item.unitNo}
         /> */}
 
         {/* Coorporate Contact Person */}
-        <SurveyCoorporateContact />
+        <SurveyCoorporateContact noPengajuanSurvey={'asd'} unitNo={'asd'} />
         {/* <IncomingCoorporateContact /> */}
 
         {/* Follow Up Activity */}
-        <SurveyFUA />
+        <SurveyFUA noPengajuanSurvey={'asd'} unitNo={'asd'} />
         {/* <IncomingFUA /> */}
 
         {/* Buttons */}
