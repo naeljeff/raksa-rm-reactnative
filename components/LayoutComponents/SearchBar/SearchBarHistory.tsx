@@ -88,7 +88,7 @@ const SearchBarHistory = ({
 
         {/* Upload */}
         <View className="flex flex-row justify-center items-center gap-x-2 mb-2 mr-2">
-          <Surface elevation={2} className="rounded-lg">
+          {/* <Surface elevation={2} className="rounded-lg">
             <View className="px-1 py-1 bg-white rounded-lg">
               <TouchableOpacity onPress={() => console.log('Add')}>
                 <Icon name="add" size={20} style={{color: 'black'}} />
@@ -102,7 +102,7 @@ const SearchBarHistory = ({
                 <Feather name="upload" size={20} style={{color: 'black'}} />
               </TouchableOpacity>
             </View>
-          </Surface>
+          </Surface> */}
         </View>
       </View>
     </View>

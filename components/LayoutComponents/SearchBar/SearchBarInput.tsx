@@ -136,22 +136,22 @@ const SearchBarInput = ({
 
         {/* Add */}
         <View className="flex flex-row justify-center items-center gap-x-2 mb-2 mr-2">
-          <Surface elevation={2} className="rounded-lg">
+          {/* <Surface elevation={2} className="rounded-lg">
             <View className="px-1 py-1 bg-white rounded-lg">
               <TouchableOpacity onPress={handleAddPengajuan}>
                 <Icon name="add" size={20} style={{color: 'black'}} />
               </TouchableOpacity>
             </View>
-          </Surface>
+          </Surface> */}
 
           {/* Upload */}
-          <Surface elevation={2} className="roundedlg">
+          {/* <Surface elevation={2} className="roundedlg">
             <View className="px-1 py-1 bg-white rounded-lg">
               <TouchableOpacity onPress={() => console.log('upload')}>
                 <Feather name="upload" size={20} style={{color: 'black'}} />
               </TouchableOpacity>
             </View>
-          </Surface>
+          </Surface> */}
         </View>
       </View>
     </View>

@@ -2,9 +2,7 @@
 exports.__esModule = true;
 var react_native_1 = require("react-native");
 var Ionicons_1 = require("react-native-vector-icons/Ionicons");
-var Feather_1 = require("react-native-vector-icons/Feather");
 var react_1 = require("react");
-var react_native_paper_1 = require("react-native-paper");
 var SearchBy_1 = require("./SearchBy");
 var SearchBarHistory = function (_a) {
     var setSearchTerm = _a.setSearchTerm, setSearchByTerm = _a.setSearchByTerm, searchTab = _a.searchTab;
@@ -40,14 +38,6 @@ var SearchBarHistory = function (_a) {
                         react_1["default"].createElement(SearchBy_1["default"], { onSearchByChange: onSearchByChange, searchTab: searchTab }))))),
         react_1["default"].createElement(react_native_1.View, { className: "w-full flex flex-row justify-between items-center mb-1" },
             react_1["default"].createElement(react_native_1.View, { className: "w-[55%] h-[40px] flex flex-row gap-x-1 ml-0.5" }),
-            react_1["default"].createElement(react_native_1.View, { className: "flex flex-row justify-center items-center gap-x-2 mb-2 mr-2" },
-                react_1["default"].createElement(react_native_paper_1.Surface, { elevation: 2, className: "rounded-lg" },
-                    react_1["default"].createElement(react_native_1.View, { className: "px-1 py-1 bg-white rounded-lg" },
-                        react_1["default"].createElement(react_native_1.TouchableOpacity, { onPress: function () { return console.log('Add'); } },
-                            react_1["default"].createElement(Ionicons_1["default"], { name: "add", size: 20, style: { color: 'black' } })))),
-                react_1["default"].createElement(react_native_paper_1.Surface, { elevation: 2, className: "roundedlg" },
-                    react_1["default"].createElement(react_native_1.View, { className: "px-1 py-1 bg-white rounded-lg" },
-                        react_1["default"].createElement(react_native_1.TouchableOpacity, { onPress: function () { return console.log('upload'); } },
-                            react_1["default"].createElement(Feather_1["default"], { name: "upload", size: 20, style: { color: 'black' } }))))))));
+            react_1["default"].createElement(react_native_1.View, { className: "flex flex-row justify-center items-center gap-x-2 mb-2 mr-2" }))));
 };
 exports["default"] = SearchBarHistory;

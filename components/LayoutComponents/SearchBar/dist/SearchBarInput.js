@@ -2,8 +2,6 @@
 exports.__esModule = true;
 var react_1 = require("react");
 var Ionicons_1 = require("react-native-vector-icons/Ionicons");
-var Feather_1 = require("react-native-vector-icons/Feather");
-var react_native_paper_1 = require("react-native-paper");
 var react_native_1 = require("react-native");
 var react_redux_1 = require("react-redux");
 var webviewSlice_1 = require("../../../store/slices/webviewSlice");
@@ -71,14 +69,6 @@ var SearchBarInput = function (_a) {
                     react_1["default"].createElement(SortBy_1["default"], { onSortByChange: onSortByChange })),
                 react_1["default"].createElement(react_native_1.View, { className: "w-[60%] h-[30px] text-sm border border-black bg-white rounded-lg pl-2 py-1" },
                     react_1["default"].createElement(OrderBy_1["default"], { onOrderByChange: onOrderByChange }))),
-            react_1["default"].createElement(react_native_1.View, { className: "flex flex-row justify-center items-center gap-x-2 mb-2 mr-2" },
-                react_1["default"].createElement(react_native_paper_1.Surface, { elevation: 2, className: "rounded-lg" },
-                    react_1["default"].createElement(react_native_1.View, { className: "px-1 py-1 bg-white rounded-lg" },
-                        react_1["default"].createElement(react_native_1.TouchableOpacity, { onPress: handleAddPengajuan },
-                            react_1["default"].createElement(Ionicons_1["default"], { name: "add", size: 20, style: { color: 'black' } })))),
-                react_1["default"].createElement(react_native_paper_1.Surface, { elevation: 2, className: "roundedlg" },
-                    react_1["default"].createElement(react_native_1.View, { className: "px-1 py-1 bg-white rounded-lg" },
-                        react_1["default"].createElement(react_native_1.TouchableOpacity, { onPress: function () { return console.log('upload'); } },
-                            react_1["default"].createElement(Feather_1["default"], { name: "upload", size: 20, style: { color: 'black' } }))))))));
+            react_1["default"].createElement(react_native_1.View, { className: "flex flex-row justify-center items-center gap-x-2 mb-2 mr-2" }))));
 };
 exports["default"] = SearchBarInput;

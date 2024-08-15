@@ -55,7 +55,7 @@ const MySurvey = () => {
       {/* Information */}
       <Information />
 
-      {processedRefreshing && processedData.length === 0 ? (
+      {/* {processedRefreshing && processedData.length === 0 ? (
         <View className="w-full flex-1 bg-[#f7ebd7] inset-0 justify-center items-center">
           <ActivityIndicator size="large" color="#f5af46" />
         </View>
@@ -70,7 +70,7 @@ const MySurvey = () => {
           sortBy={sortBy}
           orderBy={orderBy}
         />
-      )}
+      )} */}
     </View>
   );
 };
